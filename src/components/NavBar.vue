@@ -38,16 +38,20 @@ export default {
 <style scoped>
 .nav-menu {
   background-color: rgb(228, 228, 228);
+  height: 60px;
 }
 .nav-content {
   display: flex;
   justify-content: space-between;
-  padding: 10px 30px;
+  padding: 20px 30px;
   align-items: center;
+
 }
 
 .link-plain {
   text-decoration: none;
+  font-weight: 700;
+  font-size : 20px;
 }
 .nav-items {
   display: flex;
