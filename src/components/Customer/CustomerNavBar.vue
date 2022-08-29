@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <router-link class="navbar-brand nav-menu" to="/">Home</router-link>
+        <router-link class="navbar-brand bg-success nav-menu" to="/">Welcome <span class="text-danger">{{ name }} !</span></router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -18,14 +18,15 @@
           <ul class="navbar-nav ">
             
               <li class="nav-item nav-menu">
-                <router-link class="nav-link active nav-menu" aria-current="page" to="/login">Login</router-link>
+                <router-link class="nav-link active" aria-current="page" to="/customers/tickets/add">AddTickets</router-link>
               </li>
               <li class="nav-item nav-menu">
-                <router-link class="nav-link" to="/signup">Signup</router-link>
+                <router-link class="nav-link" to="/customers/tickets">Tickets</router-link>
               </li>
               <li class="nav-item nav-menu">
-                <router-link class="nav-link " to="/customer">Customer</router-link>
+                <router-link class="nav-link" @click.prevent='logOut()' to="/login">Logout</router-link>
               </li>
+              
           
           </ul>
         </div>
@@ -35,16 +36,24 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  name: "NewNavBar",
+  name: "CustomerNavBar",
+
+  computed : {
+    ...mapGetters(['name']),
+  },
+
+  methods : {
+     logOut() {  
+
+            localStorage.clear();
+            this.$router.replace('/login');
+        },
+  }
 };
 </script>
 
 <style>
-
-.nav-menu {
-  font-size: 17px;
-  font-weight: 900;
- 
-}
 </style>

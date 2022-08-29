@@ -1,18 +1,22 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
     <h1>CRM HOME</h1>
+    
   </div>
 </template>
 
 <script>
-import NavBar from './NavBar.vue'
+import NavBar from "./NavBar.vue";
 export default {
-    name : "HomePage",
-    components : {
-      NavBar
-    }
-}
+  name: "HomePage",
+  components: {
+    NavBar,
+  },
+  // methods : {
+  //   show: true
+  // }
+};
 </script>
 
 <style>

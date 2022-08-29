@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <router-link class="navbar-brand nav-menu" to="/">Home</router-link>
+        <router-link class="navbar-brand" to="/">Home</router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -17,15 +17,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ">
             
-              <li class="nav-item nav-menu">
-                <router-link class="nav-link active nav-menu" aria-current="page" to="/login">Login</router-link>
+              <li class="nav-item">
+                <router-link class="nav-link active" aria-current="page" to="/tickets/add">AddTickets</router-link>
               </li>
-              <li class="nav-item nav-menu">
-                <router-link class="nav-link" to="/signup">Signup</router-link>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/customers">Tickets</router-link>
               </li>
-              <li class="nav-item nav-menu">
-                <router-link class="nav-link " to="/customer">Customer</router-link>
-              </li>
+              
           
           </ul>
         </div>
@@ -41,10 +39,4 @@ export default {
 </script>
 
 <style>
-
-.nav-menu {
-  font-size: 17px;
-  font-weight: 900;
- 
-}
 </style>

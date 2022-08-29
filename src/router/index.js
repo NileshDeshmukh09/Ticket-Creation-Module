@@ -3,6 +3,7 @@ import SignupPage from '@/components/SignupPage';
 import LoginPage from '@/components/LoginPage';
 import HomePage from '@/components/HomePage';
 import CustomerHome from '@/components/Customer/CustomerHome';
+import AddNewTicket from '@/components/Customer/AddNewTicket';
 
 
 const router = new Router({
@@ -28,8 +29,13 @@ const router = new Router({
 
       {
         name : 'CustomerHome',
-        path : '/customer',
-        component : CustomerHome
+        path : '/customers/tickets',
+        component : CustomerHome,
+      },
+      {
+        name : 'AddNewTicket',
+        path : '/customers/tickets/add',
+        component : AddNewTicket,
       }
      
       
