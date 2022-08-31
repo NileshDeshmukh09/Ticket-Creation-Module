@@ -27,20 +27,32 @@ export const userLogin = async (data ) => {
         data,
     };
 
-    
-    const response = await axios(req);
-    console.log("AuthChecked : ", response.status);
-    try {
-        // if()
-        console.log("Response :", response.status)
+
+    try { 
+       const response = await axios(req);
         return response;
     } catch (error) {
-        
-        const msg = error;
-        console.log("Response :", response.data.message)
-        console.log("AuthService :", msg);
-        return false;
+        console.log( error );
+        const err = error.request.response;
+       return err;
     }
+
+    
+    // const response = await axios(req);
+    // console.log("AuthChecked : ", response.status);
+    // try {
+        
+    //     console.log("Response :", response.data.message)
+    //     return response;
+    // } catch (error) {
+        
+    //     // const msg = error;
+    //     // console.log("Response :", response.data.message)
+    //     // console.log("AuthService :", msg);
+    //     return error;
+    // }
+
+
 
 
 };

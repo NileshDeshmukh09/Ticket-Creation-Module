@@ -62,7 +62,7 @@
 <script>
 import NavBar from "./NavBar.vue";
 import { required, minLength } from "vuelidate/lib/validators";
-import { mapActions  } from "vuex";
+import { mapActions, mapGetters  } from "vuex";
 
 export default {
   name: "LoginPage",
@@ -88,6 +88,10 @@ export default {
     },
   },
 
+  computed : {
+    ...mapGetters(['userMessage']),
+  },
+
   methods: {
     ...mapActions(["login"]),
  
@@ -105,25 +109,22 @@ export default {
             this.$toast.error('password not provided !')
       }
 
-      const msg = await this.login(data );
+      const response = await this.login(data );
     
-      console.log("msg : ", msg);
+      console.log("msg : ", response);
 
-      if (msg) {
-        const res = msg.data.message;
-        this.$toast.success( res );
+      if (response.data.status == 200 ) {
+        this.$toast.success( this.userMessage );
         setTimeout(() => {
           this.$router.push("/customers/tickets");
         }, 1000);
-      } else {
-          this.$toast.error( msg );   
+      } else if(response.data.status == 400 ) {
+          this.$toast.error( response.data );   
       }
     },
   },
 
-  computed: {
-    
-}
+ 
 
 };
 </script>

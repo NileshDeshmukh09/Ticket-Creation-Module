@@ -39,7 +39,7 @@ const actions = {
  async login( { commit } , data  ){
     
     const response = await userLogin(data  );
-    if( response  ){
+    if( response.data.status == 200  ){
         const {
             message ,
             user : {
