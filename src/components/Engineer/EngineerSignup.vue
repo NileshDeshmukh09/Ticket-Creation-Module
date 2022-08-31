@@ -4,9 +4,28 @@
     
     <div class="container signup ">
     
-        <h1 class="text-center text-black ">SIGNUP</h1>
+        <h1 class="text-center text-black "><strong>Signup</strong> | ENGINEER</h1>
      
         <form @submit.prevent="OnSubmit">
+          <div class="form-group m-3">
+            <label for="userType">UserType :</label>
+            <input
+              v-model.trim="$v.userType.$model"
+              type="text"
+              class="form-control inputField"
+              id="userType"
+              aria-describedby="emailHelp"
+              :class="{
+                'is-valid': !$v.userType.$invalid,
+                'is-invalid': $v.userType.$error,
+              }"
+              placeholder="Enter userType"
+            />
+            <div class="invalid-feedback">
+              <span v-if=" !$v.userType.required">userType is required !</span>
+            </div>
+           
+          </div>
           <div class="form-group m-3">
             <label for="name">Name :</label>
             <input
@@ -131,7 +150,7 @@
 </template>
 
 <script>
-import NavBar from "./NavBar.vue";
+import NavBar from "../NavBar.vue";
 // import { validatePassword } from '@/services/PasswordValidations'
 import { required, email, sameAs } from 'vuelidate/lib/validators'
 // import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
@@ -141,12 +160,13 @@ import { signup } from "@/services/auth.services";
 
 
 export default {
-  name: "SignupPage",
+  name: "EngineerSignup",
   components: {
     NavBar,
   },
   data() {
     return {
+      userType : "",
       name: "",
       userId: "",
       email: "",
@@ -161,7 +181,9 @@ export default {
   },
 
   validations: {
-     
+     userType : {
+        required
+     },
       name : { 
         required 
       },
@@ -185,7 +207,8 @@ export default {
   methods: {
 
     async handleSignup() {
-      const addData = {
+      const data = {
+        userType : this.userType.toUpperCase(),
         name: this.name,
         userId: this.userId,
         email: this.email,
@@ -193,17 +216,21 @@ export default {
       };
       console.log(this.$v);
 
-      const response = await signup(addData);
+      if( data.userType != "ENGINEER"){
+            this.$toast.error("You are not an Engineer , Only Engineer able to Sigup Here!");
+            return false;
+      }
+
+      const response = await signup(data);
       
-      
-        console.log(response);
       if( response == true ){
+        console.log(response);
         this.$toast.success("Successfully Registered !")
          setTimeout(() => {
           this.$router.push("/login");
         }, 1000);
       }else{
-        this.$toast.error( response )
+        this.$toast.error( response.data )
       }
      
     },

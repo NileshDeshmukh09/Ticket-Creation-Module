@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <router-link class="navbar-brand bg-success nav-menu" to="/">Welcome <span class="text-danger">{{ name }} !</span></router-link>
+        <router-link class="navbar-brand  nav-menu" to="/">Welcome <span class="text-primary">{{ userName }} </span> !</router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -17,6 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ">
             
+              
               <li class="nav-item nav-menu">
                 <router-link class="nav-link active" aria-current="page" to="/customers/tickets/add">AddTickets</router-link>
               </li>
@@ -36,16 +37,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   name: "CustomerNavBar",
 
   computed : {
-    ...mapGetters(['name']),
+    ...mapGetters(['userName']),
   },
 
   methods : {
+
      logOut() {  
 
             localStorage.clear();

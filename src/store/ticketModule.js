@@ -36,10 +36,10 @@ const getters = {
 const actions = {
 
     
- async login( { commit } , data ){
+ async login( { commit } , data  ){
     
-    const response = await userLogin(data);
-    if( response !== false ){
+    const response = await userLogin(data  );
+    if( response  ){
         const {
             message ,
             user : {

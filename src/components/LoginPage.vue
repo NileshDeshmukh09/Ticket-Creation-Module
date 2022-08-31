@@ -73,6 +73,7 @@ export default {
     return {
       userId: "",
       password: "",
+     
     };
   },
 
@@ -104,7 +105,7 @@ export default {
             this.$toast.error('password not provided !')
       }
 
-      const msg = await this.login(data);
+      const msg = await this.login(data );
     
       console.log("msg : ", msg);
 

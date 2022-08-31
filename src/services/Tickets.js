@@ -5,7 +5,7 @@ import axios from 'axios';
 import Config from '@/config';
 
 
-export const addNewTicketMethods = {
+export const ticketsMethod = {
     /*
 
     CreateTickets methods contains the data and token as a parameter
@@ -32,5 +32,28 @@ export const addNewTicketMethods = {
             console.log(error.message);
             return false;
         }
+    } , 
+
+
+    updateTicket : async ( updateData , accessToken , contactId )=>{
+        const req = {
+            method: 'PUT',
+            url: `${Config.baseUrl}/tickets/${ contactId }`,
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': accessToken,
+            },
+            data: updateData,
+        }
+
+        
+        try {
+            await axios(req);
+            return true;
+        } catch (error) {
+            console.log(error.message);
+            return false;
+        }
     }
+
 }

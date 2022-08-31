@@ -20,19 +20,27 @@ export const signup = async (data) => {
 };
 
 
-export const userLogin = async (data) => {
+export const userLogin = async (data ) => {
     const req = {
         method: 'post',
         url: `${Config.baseUrl}/auth/signin`,
         data,
     };
+
+    
+    const response = await axios(req);
+    console.log("AuthChecked : ", response.status);
     try {
-        const response = await axios(req);
-        console.log("Response :", response.data.message)
+        // if()
+        console.log("Response :", response.status)
         return response;
     } catch (error) {
-        const msg = error.response.data;
+        
+        const msg = error;
+        console.log("Response :", response.data.message)
         console.log("AuthService :", msg);
         return false;
     }
+
+
 };

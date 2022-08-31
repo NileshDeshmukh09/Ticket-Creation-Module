@@ -24,7 +24,7 @@
                 <router-link class="nav-link" to="/signup">Signup</router-link>
               </li>
               <li class="nav-item nav-menu">
-                <router-link class="nav-link " to="/customer">Customer</router-link>
+                <router-link class="nav-link " to="/engineer/signup">Engineer-Signup</router-link>
               </li>
           
           </ul>

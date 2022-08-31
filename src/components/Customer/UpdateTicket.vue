@@ -3,10 +3,8 @@
     <CustomerNavBar />
     <div class="add-ticket-form bg-warning">
       <h2 class="text-center text-white fw-bold my-3">
-        ADD NEW TICKET | CUSTOMER
+        UPDATE TICKETS | CUSTOMER
       </h2>
-
-      <hr>
 
       <form @submit.prevent="OnSubmit">
         <div class="form-group">
@@ -50,8 +48,8 @@
             >
           </div>
         </div>
-        
-        <button type="submit" class="btn btn-primary my-3">Submit</button>
+       
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
@@ -63,7 +61,7 @@ import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
 import { ticketsMethod } from "@/services/Tickets";
 export default {
-  name: "AddNewTicket",
+  name: "UpdateTicket",
 
   components: {
     CustomerNavBar,
@@ -71,6 +69,7 @@ export default {
 
   data() {
     return {
+      ticketId : this.$route.params.ticketId,
       title: "",
       description: "",
       submitStatus: null,
@@ -92,7 +91,7 @@ export default {
   },
 
   methods: {
-    async onCreateTicket() {
+    async onUpdateTicket() {
       try {
         const data = {
           title: this.title,
@@ -102,14 +101,15 @@ export default {
         console.log("data : ", data);
 
         const helper = async () => {
-          this.ticketsCreated = await ticketsMethod.createTicket(
+          this.ticketsCreated = await ticketsMethod.updateTicket(
             data,
-            this.getToken
+            this.getToken,
+            this.ticketId
           );
         };
         
         if (helper()) {
-          this.$toast.success("Tickets Created Successfully !");
+          this.$toast.success("Tickets updated Successfully !");
         } else {
           this.$toast.error("Something Error Happened , Please try again");
         }
@@ -125,7 +125,7 @@ export default {
         this.submitStatus = "FAIL";
       } else {
         this.submitStatus = "SUCCESS";
-        this.onCreateTicket();
+        this.onUpdateTicket();
       }
     },
   },
