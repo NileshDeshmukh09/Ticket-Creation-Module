@@ -62,7 +62,7 @@
 <script>
 import NavBar from "./NavBar.vue";
 import { required, minLength } from "vuelidate/lib/validators";
-import { mapActions, mapGetters  } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "LoginPage",
@@ -73,7 +73,6 @@ export default {
     return {
       userId: "",
       password: "",
-     
     };
   },
 
@@ -88,13 +87,12 @@ export default {
     },
   },
 
-  computed : {
-    ...mapGetters(['userMessage']),
+  computed: {
+    ...mapGetters(["userMessage"]),
   },
 
   methods: {
     ...mapActions(["login"]),
- 
 
     async onLogin() {
       const data = {
@@ -103,29 +101,33 @@ export default {
       };
       console.log(data);
 
-       if( !this.userId ){
-            this.$toast.error("UserID Not Provided !");
-      }else if( !this.password ){
-            this.$toast.error('password not provided !')
+      if (!this.userId) {
+        this.$toast.error("UserID Not Provided !");
+      } else if (!this.password) {
+        this.$toast.error("password not provided !");
       }
 
-      const response = await this.login(data );
-    
+      const response = await this.login(data);
+
       console.log("msg : ", response);
 
-      if (response.data.status == 200 ) {
-        this.$toast.success( this.userMessage );
-        setTimeout(() => {
-          this.$router.push("/customers/tickets");
-        }, 1000);
-      } else if(response.data.status == 400 ) {
-          this.$toast.error( response.data );   
+      if (response.data.status == 200) {
+        if (response.data.user.userType === "CUSTOMER") {
+          this.$toast.success(this.userMessage);
+          setTimeout(() => {
+            this.$router.push("/customers/tickets");
+          }, 1000);
+        } else if (response.data.user.userType === "ADMIN") {
+          this.$toast.success(this.userMessage);
+          setTimeout(() => {
+            this.$router.push("/admin");
+          }, 1000);
+        }
+      } else {
+        this.$toast.error(response.data);
       }
     },
   },
-
- 
-
 };
 </script>
 
@@ -166,7 +168,7 @@ span {
   margin-top: 50px;
   border: 1px solid rgb(160, 179, 219);
   border-radius: 10px;
-  box-shadow : 3px 2px 10px rgb(192, 183, 183);
+  box-shadow: 3px 2px 10px rgb(192, 183, 183);
 }
 
 .login-heading {

@@ -80,7 +80,12 @@ export default {
   created: async function () {
     let response = await getAllTickets.getTickets(this.getToken);
     this.ticketsList = response;
+    this.$toast.success( this.ticketsList.data.message )
     console.log(response);
+
+    // if( this.ticketsList.data.tickets.length === null ){
+    //   this.$toast.error( "No Ticket Created !" )
+    // }
   },
 
   

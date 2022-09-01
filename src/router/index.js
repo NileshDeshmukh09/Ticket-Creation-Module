@@ -7,6 +7,7 @@ import AddNewTicket from '@/components/Customer/AddNewTicket';
 import UpdateTicket from '@/components/Customer/UpdateTicket';
 import EngineerSignup from '@/components/Engineer/EngineerSignup';
 import AdminHome from '@/components/Admin/AdminHome';
+import UsersList from '@/components/Admin/UsersList';
 
 
 const router = new Router({
@@ -62,6 +63,11 @@ const router = new Router({
         name : "AdminHome" , 
         path : '/admin',
         component : AdminHome
+      },
+      {
+        name : "UsersList" , 
+        path : '/users',
+        component : UsersList
       },
 
      
