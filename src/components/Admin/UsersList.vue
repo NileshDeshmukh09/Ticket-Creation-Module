@@ -1,21 +1,52 @@
 <template>
-  <div>
+  <div id="userspage">
     <AdminNavBar />
     <h1 class="text-center text-white bg-primary">Users List</h1>
 
-    <h3 class="text-secondary">List of the Users :</h3>
-    <pre>{{ usersList.data.users[0] }} </pre>
+    <h5>LIST OF THE USERS :</h5>
 
-    <div class="users" v-for="user in usersList.data.users" :key="user.userId">
+    <!-- <pre>{{ usersList.data.users[0] }} </pre> -->
+
+    <div class="totalusers btn bg-light fw-bold">
+      Total Users :
+      <span class="text-secondary"> {{ usersList.data.users.length }}</span>
+    </div>
+    <div
+      class="users p-2"
+      v-for="user in usersList.data.users"
+      :key="user.userId"
+    >
       <div class="userslist container">
-        <h1 class="name">{{ user.name }}</h1>
-        <div class="usersValue d-flex justify-content-between">
-          <p class="userId text-secondary">{{ user.userId }}</p>
-          <p class="email">{{ user.email }}</p>
+        <div class="username d-flex justify-content-between">
+          <h1 class="name">{{ user.name }}</h1>
+          <div class="buttons  d-flex justify-content-between">
+            <button class="delete btn btn-sm  fw-bold"><router-link :to="`/admin/users/${user.userId}`" class="text-decoration-none">View</router-link> </button>
+            <button class="edit btn btn-sm fw-bold"><router-link :to="`/admin/users/${user.userId}`" class="text-decoration-none">Edit</router-link></button>
+          </div>
         </div>
-        <div class="usersValue d-flex">
-          <p class="userType col-md-6">{{ user.userType }}</p>
-          <p class="userStatus col-md-6"><span>STATUS : </span>{{ user.userStatus }}</p>
+        <div class="usersValue d-flex justify-content-between">
+          <p class="userId text-secondary">{{ user.userType }}</p>
+          <p class="email text-secondary">
+            <span class="text-dark"> Email : </span>{{ user.email }}
+          </p>
+        </div>
+        <div class="usersTypes d-flex">
+          <p class="userType col-md-6">
+            <span> USER-ID : </span>{{ user.userId }}
+          </p>
+          <p
+            class="userStatus col-md-6 text-success"
+            v-if="user.userStatus == 'APPROVED'"
+          >
+            <span class="text-dark">STATUS : </span>{{ user.userStatus }}
+          </p>
+        
+          <p
+            class="userStatus col-md-6 text-danger"
+            v-else-if="user.userStatus == 'PENDING'"
+          >
+            <span class="text-dark">STATUS : </span>{{ user.userStatus }}
+          </p>
         </div>
       </div>
       <br />
@@ -52,10 +83,18 @@ export default {
 </script>
 
 <style>
+#userspage {
+  background: rgb(222, 221, 221);
+}
+
+.totalUsers {
+  margin-left: 20px;
+}
+
 .userslist {
   height: 200px;
   /* background: rgb(253, 252, 252); */
-  background: rgb(196, 190, 190);
+  background: rgb(255, 255, 255);
   box-shadow: 2px 2px 2px 2px rgb(203, 200, 200);
   border-radius: 4px;
 }
@@ -77,11 +116,32 @@ export default {
   font-weight: 900;
   padding-left: 14px;
 }
-.userType {
+.userType,
+.userStatus {
   padding-left: 14px;
   font-weight: 900;
 }
 span {
   font-weight: 900;
+}
+.buttons {
+  width: 130px;
+  font-weight: 900;
+}
+.users {
+  background: rgb(222, 221, 221);
+}
+
+@media screen and (max-width: 600px) {
+  .usersValue {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .userTypes {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
 }
 </style>

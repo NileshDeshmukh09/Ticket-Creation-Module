@@ -19,10 +19,10 @@
             
               
               <li class="nav-item nav-menu">
-                <router-link class="nav-link active" aria-current="page" to="#">Permissions</router-link>
+                <router-link class="nav-link active" aria-current="page" to="/admin/permissions">Permissions</router-link>
               </li>
               <li class="nav-item nav-menu">
-                <router-link class="nav-link" to="/users">Users</router-link>
+                <router-link class="nav-link" to="/admin/users">Users</router-link>
               </li>
               <li class="nav-item nav-menu">
                 <router-link class="nav-link" @click.prevent='logOut()' to="/login">Logout</router-link>

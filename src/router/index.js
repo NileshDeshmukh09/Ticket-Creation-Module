@@ -8,6 +8,9 @@ import UpdateTicket from '@/components/Customer/UpdateTicket';
 import EngineerSignup from '@/components/Engineer/EngineerSignup';
 import AdminHome from '@/components/Admin/AdminHome';
 import UsersList from '@/components/Admin/UsersList';
+import GivePermission from '@/components/Admin/GivePermissions';
+import EditUser from '@/components/Admin/EditUser';
+import ViewUser from '@/components/Admin/ViewUser';
 
 
 const router = new Router({
@@ -64,11 +67,30 @@ const router = new Router({
         path : '/admin',
         component : AdminHome
       },
+
       {
         name : "UsersList" , 
-        path : '/users',
+        path : '/admin/users',
         component : UsersList
       },
+
+      {
+        name : "GivePermission" , 
+        path : '/admin/permissions',
+        component : GivePermission
+      },
+
+      {
+        name : "EditUser" , 
+        path : 'admin/users/:userId',
+        component : EditUser
+      },
+      {
+        name : "viewUser" , 
+        path : '/admin/users/:userId',
+        component : ViewUser
+      },
+
 
      
       
