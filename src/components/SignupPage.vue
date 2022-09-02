@@ -294,6 +294,7 @@ label {
 .inputField {
   height: 40px;
   border: 1px solid black;
+  font-weight: 900;
 }
 
 input::placeholder , p {

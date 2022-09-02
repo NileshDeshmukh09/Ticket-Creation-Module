@@ -9,8 +9,8 @@ import EngineerSignup from '@/components/Engineer/EngineerSignup';
 import AdminHome from '@/components/Admin/AdminHome';
 import UsersList from '@/components/Admin/UsersList';
 import GivePermission from '@/components/Admin/GivePermissions';
-import EditUser from '@/components/Admin/EditUser';
 import ViewUser from '@/components/Admin/ViewUser';
+import EditUser from '@/components/Admin/EditUser';
 
 
 const router = new Router({
@@ -81,14 +81,15 @@ const router = new Router({
       },
 
       {
-        name : "EditUser" , 
-        path : 'admin/users/:userId',
-        component : EditUser
-      },
-      {
         name : "viewUser" , 
         path : '/admin/users/:userId',
         component : ViewUser
+      },
+
+      {
+        name : "EditUser" , 
+        path : '/admin/users/:userId/edit',
+        component : EditUser
       },
 
 

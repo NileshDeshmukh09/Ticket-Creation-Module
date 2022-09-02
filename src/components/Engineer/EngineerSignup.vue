@@ -8,7 +8,7 @@
      
         <form @submit.prevent="OnSubmit">
           <div class="form-group m-3">
-            <label for="userType">UserType :</label>
+            <label for="userType">User Type :</label>
             <input
               v-model.trim="$v.userType.$model"
               type="text"
@@ -22,7 +22,7 @@
               placeholder="Enter userType"
             />
             <div class="invalid-feedback">
-              <span v-if=" !$v.userType.required">userType is required !</span>
+              <span v-if=" !$v.userType.required">User Type is required !</span>
             </div>
            
           </div>
@@ -65,7 +65,7 @@
           </div>
 
           <div class="form-group m-3">
-            <label for="email">Email address :</label>
+            <label for="email">Email Address :</label>
             <input
               v-model.trim="$v.email.$model"
               type="email"
@@ -321,6 +321,7 @@ label {
 .inputField {
   height: 40px;
   border: 1px solid black;
+  font-weight: 900;
 }
 
 input::placeholder , p {

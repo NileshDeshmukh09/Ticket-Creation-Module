@@ -21,7 +21,7 @@
           <h1 class="name">{{ user.name }}</h1>
           <div class="buttons  d-flex justify-content-between">
             <button class="delete btn btn-sm  fw-bold"><router-link :to="`/admin/users/${user.userId}`" class="text-decoration-none">View</router-link> </button>
-            <button class="edit btn btn-sm fw-bold"><router-link :to="`/admin/users/${user.userId}`" class="text-decoration-none">Edit</router-link></button>
+            <button class="edit btn btn-sm fw-bold"><router-link :to="`/admin/users/${user.userId}/edit`" class="text-decoration-none">Edit</router-link></button>
           </div>
         </div>
         <div class="usersValue d-flex justify-content-between">
@@ -35,14 +35,14 @@
             <span> USER-ID : </span>{{ user.userId }}
           </p>
           <p
-            class="userStatus col-md-6 text-success"
+            class="userStatus col-md-6 fw-bolder text-success"
             v-if="user.userStatus == 'APPROVED'"
           >
-            <span class="text-dark">STATUS : </span>{{ user.userStatus }}
+            <span class="text-dark fw-bold">STATUS : </span>{{ user.userStatus }}
           </p>
         
           <p
-            class="userStatus col-md-6 text-danger"
+            class="userStatus col-md-6 fw-bolder text-danger"
             v-else-if="user.userStatus == 'PENDING'"
           >
             <span class="text-dark">STATUS : </span>{{ user.userStatus }}
@@ -57,7 +57,7 @@
 <script>
 import { mapGetters } from "vuex";
 import AdminNavBar from "./AdminNavBar.vue";
-import { usersList } from "@/services/usersList";
+import { usersList } from "@/services/Users";
 
 export default {
   name: "UsersList",

@@ -190,6 +190,7 @@ label {
   height: 40px;
   border: 1px solid black;
   box-shadow: 0px 2px 3px black;
+  font-weight: 900;
 }
 
 input::placeholder,
