@@ -92,7 +92,7 @@ export default {
 }
 
 .userslist {
-  height: 200px;
+  height: 230px;
   /* background: rgb(253, 252, 252); */
   background: rgb(255, 255, 255);
   box-shadow: 2px 2px 2px 2px rgb(203, 200, 200);

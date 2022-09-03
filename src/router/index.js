@@ -12,6 +12,7 @@ import GivePermission from '@/components/Admin/GivePermissions';
 import ViewUser from '@/components/Admin/ViewUser';
 import EditUser from '@/components/Admin/EditUser';
 import EngineerHome from '@/components/Engineer/EngineerHome';
+import UpdateTicket from '@/components/Engineer/UpdateTicket';
 
 
 const router = new Router({
@@ -97,7 +98,13 @@ const router = new Router({
         name : "EngineerHome",
         path : "/engineer",
         component : EngineerHome
-      }
+      },
+
+      {
+        name : "UpdateTicket",
+        path : "/engineer/tickets/:ticketId",
+        component : UpdateTicket
+      },
 
 
      
