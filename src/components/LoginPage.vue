@@ -122,7 +122,7 @@ export default {
         else if (response.data.user.userType === "ADMIN") {
           this.$toast.success(this.userMessage);
           setTimeout(() => {
-            this.$router.push("/admin");
+            this.$router.push("/admin/users");
           }, 1000);
         } /** ENGINEER */
         else if( response.data.user.userType === "ENGINEER"){

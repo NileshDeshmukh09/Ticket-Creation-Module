@@ -2,7 +2,7 @@
   <div id="home">
     <NavBar class="nav-style"/>
     
-    <div class="container signup ">
+    <div class="container signup">
     
         <h1 class="text-center text-black "><strong>Signup</strong> | ENGINEER</h1>
      
@@ -151,12 +151,8 @@
 
 <script>
 import NavBar from "../NavBar.vue";
-// import { validatePassword } from '@/services/PasswordValidations'
 import { required, email, sameAs } from 'vuelidate/lib/validators'
-// import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
 import { signup } from "@/services/auth.services";
-// import { reactive , computed  } from 'vue'
-
 
 
 export default {
@@ -256,6 +252,10 @@ export default {
 
 <style scoped>
 
+.signup {
+  margin-top: 100px;
+}
+
 span {
   font-weight: 900;
   font-size: 14px;
@@ -263,34 +263,9 @@ span {
   cursor: pointer;
 }
 
-.dialogbox {
-  display: flex;
-  justify-content: space-between;
-  height: 60px;
-}
-
 .none {
   display: none;
 }
-
-
-.errorMessage {
-    transition: visibility 0s, opacity 0.5s linear;
-    color: rgb(233, 64, 22);
-    font-size: 0.95em;
-}
-.error {
-    border: 1.5px solid rgb(255, 9, 9);
-    color: rgb(247, 10, 10);
-}
-.success {
-    border: 1.5px solid rgb(55, 161, 14);
-    color: rgb(26, 82, 4);
-}
-.errorMessage p {
-    margin: 5px;
-}
-
 
 #home {
   background: rgb(42, 74, 216);

@@ -120,7 +120,6 @@ export default {
   },
   data() {
     return {
-      getdate: "",
       ticketsList: [],
     };
   },
@@ -135,28 +134,7 @@ export default {
     console.log(response);
   },
 
-  methods: {
-    getDate(updatedTime) {
-      const isoStr1 = updatedTime;
-
-      const date = new Date(isoStr1);
-
-      const timestampWithOffset = date.getTime();
-
-      const offset = date.getTimezoneOffset() * 60 * 1000;
-      console.log(offset);
-      const timestampWithoutOffset = timestampWithOffset - offset;
-
-      const dateWithOffset = new Date(timestampWithOffset);
-      console.log(dateWithOffset);
-
-      const dateWithoutOffset = new Date(timestampWithoutOffset);
-      console.log(dateWithoutOffset);
-
-      this.getdate = dateWithoutOffset;
-      return this.getdate;
-    },
-  },
+ 
 };
 </script>
 

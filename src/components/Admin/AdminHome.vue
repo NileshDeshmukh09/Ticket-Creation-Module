@@ -1,7 +1,7 @@
 <template>
   <div>
     <AdminNavBar/>
-    <h1 class="text-center bg-danger text-white fw-100">Admin DashBoard</h1>
+    <!-- <h1 class="text-center bg-danger text-white fw-100">Admin DashBoard</h1> -->
   </div>
 </template>
 

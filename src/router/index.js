@@ -6,9 +6,8 @@ import CustomerHome from '@/components/Customer/CustomerHome';
 import AddNewTicket from '@/components/Customer/AddNewTicket';
 import UpdateTicket from '@/components/Customer/UpdateTicket';
 import EngineerSignup from '@/components/Engineer/EngineerSignup';
-import AdminHome from '@/components/Admin/AdminHome';
+// import AdminHome from '@/components/Admin/AdminHome';
 import UsersList from '@/components/Admin/UsersList';
-import GivePermission from '@/components/Admin/GivePermissions';
 import ViewUser from '@/components/Admin/ViewUser';
 import EditUser from '@/components/Admin/EditUser';
 import EngineerHome from '@/components/Engineer/EngineerHome';
@@ -65,9 +64,9 @@ const router = new Router({
       /** ADMIN */
 
       {
-        name : "AdminHome" , 
-        path : '/admin',
-        component : AdminHome
+        name : "UsersList" , 
+        path : '/admin/users',
+        component : UsersList,
       },
 
       {
@@ -76,11 +75,6 @@ const router = new Router({
         component : UsersList
       },
 
-      {
-        name : "GivePermission" , 
-        path : '/admin/permissions',
-        component : GivePermission
-      },
 
       {
         name : "viewUser" , 
