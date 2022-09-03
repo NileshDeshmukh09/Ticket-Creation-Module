@@ -1,8 +1,9 @@
 <template>
   <div>
+    <div class="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <router-link class="navbar-brand  nav-menu" to="/">Welcome <span class="text-primary">{{ userName }} </span> !</router-link>
+        <router-link class="navbar-brand  nav-menu" to="/">Welcome <span class="text-primary">{{ getUserType }}{{ userName }} </span> !</router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -33,6 +34,7 @@
         </div>
       </div>
     </nav>
+    </div>
   </div>
 </template>
 
@@ -43,7 +45,7 @@ export default {
   name: "AdminNavBar",
 
   computed : {
-    ...mapGetters(['userName']),
+    ...mapGetters(['userName' , 'getUserType']),
   },
 
   methods : {
@@ -58,4 +60,10 @@ export default {
 </script>
 
 <style>
+#nav-bar {
+  top: 0;
+  box-shadow: 5px 5px 10px rgb(145, 143, 143);
+  position: fixed;
+  width: 100%;
+}
 </style>

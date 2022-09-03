@@ -45,7 +45,7 @@ export default {
   name: "CustomerNavBar",
 
   computed : {
-    ...mapGetters(['userName']),
+    ...mapGetters(['userName' , 'getUserType']),
   },
 
   methods : {
