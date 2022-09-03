@@ -217,7 +217,7 @@ export default {
       console.log(this.$v);
 
       if( data.userType != "ENGINEER"){
-            this.$toast.error("You are not an Engineer , Only Engineer able to Signup Here!");
+            this.$toast.error("You are not an ENGINEER , Only ENGINEER able to Signup Here!");
             return false;
       }
 

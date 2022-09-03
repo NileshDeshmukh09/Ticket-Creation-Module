@@ -11,6 +11,7 @@ import UsersList from '@/components/Admin/UsersList';
 import GivePermission from '@/components/Admin/GivePermissions';
 import ViewUser from '@/components/Admin/ViewUser';
 import EditUser from '@/components/Admin/EditUser';
+import EngineerHome from '@/components/Engineer/EngineerHome';
 
 
 const router = new Router({
@@ -91,6 +92,12 @@ const router = new Router({
         path : '/admin/users/:userId/edit',
         component : EditUser
       },
+
+      {
+        name : "EngineerHome",
+        path : "/engineer",
+        component : EngineerHome
+      }
 
 
      

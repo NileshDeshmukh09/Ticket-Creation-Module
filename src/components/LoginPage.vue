@@ -112,19 +112,27 @@ export default {
       console.log("msg : ", response);
 
       if (response.data.status == 200) {
+        /** if the user is CUSTOMER */
         if (response.data.user.userType === "CUSTOMER") {
           this.$toast.success(this.userMessage);
           setTimeout(() => {
             this.$router.push("/customers/tickets");
           }, 1000);
-        } else if (response.data.user.userType === "ADMIN") {
+        } /** ADMIN */
+        else if (response.data.user.userType === "ADMIN") {
           this.$toast.success(this.userMessage);
           setTimeout(() => {
             this.$router.push("/admin");
           }, 1000);
+        } /** ENGINEER */
+        else if( response.data.user.userType === "ENGINEER"){
+           this.$toast.success(this.userMessage);
+          setTimeout(() => {
+            this.$router.push("/engineer");
+          }, 1000);
         }
       } else {
-        this.$toast.error(response.data);
+        this.$toast.error("response.data");
       }
     },
   },
