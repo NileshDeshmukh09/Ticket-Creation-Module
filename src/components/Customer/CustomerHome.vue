@@ -1,7 +1,7 @@
 <template>
   <div>
     <CustomerNavBar />
-    <!-- <pre>{{ tickets.data.tickets }}</pre> -->
+    <pre>{{ tickets }}</pre>
     <!-- <pre>{{tickets.data.tickets[0]}}</pre> -->
     <!-- ---------- -->
     <div class="Home">

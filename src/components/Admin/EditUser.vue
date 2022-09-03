@@ -151,6 +151,10 @@ export default {
   background: rgb(237, 235, 235);
 }
 
+.mainDiv {
+  margin-top: 100px;
+}
+
 .label {
   font-size: 20px;
   margin-bottom: 5px;

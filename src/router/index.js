@@ -63,11 +63,11 @@ const router = new Router({
 
       /** ADMIN */
 
-      {
-        name : "UsersList" , 
-        path : '/admin/users',
-        component : UsersList,
-      },
+      // {
+      //   name : "UsersList" , 
+      //   path : '/admin/users',
+      //   component : UsersList,
+      // },
 
       {
         name : "UsersList" , 
