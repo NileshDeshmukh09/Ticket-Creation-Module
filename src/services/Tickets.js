@@ -35,10 +35,10 @@ export const ticketsMethod = {
     } , 
 
 
-    updateTicket : async ( updateData , accessToken , contactId )=>{
+    updateTicketByID : async ( updateData , accessToken , ticketID )=>{
         const req = {
             method: 'PUT',
-            url: `${Config.baseUrl}/tickets/${ contactId }`,
+            url: `${Config.baseUrl}/tickets/${ ticketID }`,
             headers: {
                 'Content-Type': 'application/json',
                 'x-access-token': accessToken,
@@ -48,8 +48,8 @@ export const ticketsMethod = {
 
         
         try {
-            await axios(req);
-            return true;
+          const updateResponse =  await axios(req);
+            return updateResponse;
         } catch (error) {
             console.log(error.message);
             return false;
@@ -75,6 +75,27 @@ export const ticketsMethod = {
              console.log(error.message);
              return error;
          }
-    }
+    },
+
+    getTicketByID : async( accessToken , ticketId) => {
+        
+        const req = {
+            method: 'GET',
+            url: `${Config.baseUrl}/tickets/${ ticketId }`,
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': accessToken,
+            },
+        }
+
+        try {
+            const response =  await axios(req);
+            return response;
+            
+         } catch (error) {
+             console.log(error.message);
+             return error;
+         }
+    },
 
 }

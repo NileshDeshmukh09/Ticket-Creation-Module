@@ -12,7 +12,7 @@ import GivePermission from '@/components/Admin/GivePermissions';
 import ViewUser from '@/components/Admin/ViewUser';
 import EditUser from '@/components/Admin/EditUser';
 import EngineerHome from '@/components/Engineer/EngineerHome';
-import UpdateTicket from '@/components/Engineer/UpdateTicket';
+import EngUpdateTicket from '@/components/Engineer/EngUpdateTicket';
 
 
 const router = new Router({
@@ -101,9 +101,9 @@ const router = new Router({
       },
 
       {
-        name : "UpdateTicket",
+        name : "EngUpdateTicket",
         path : "/engineer/tickets/:ticketId",
-        component : UpdateTicket
+        component : EngUpdateTicket
       },
 
 

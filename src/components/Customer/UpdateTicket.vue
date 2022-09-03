@@ -101,7 +101,7 @@ export default {
         console.log("data : ", data);
 
         const helper = async () => {
-          this.ticketsCreated = await ticketsMethod.updateTicket(
+          this.ticketsCreated = await ticketsMethod.updateTicketByID(
             data,
             this.getToken,
             this.ticketId

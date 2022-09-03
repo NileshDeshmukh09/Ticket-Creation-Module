@@ -160,8 +160,12 @@ export default {
 .inputValue , .selected {
   height: 50px;
   font-weight: 900;
-  border: 10px solid black;
+  border: 1px solid black;
   box-shadow: 3px 3px 10px black ;
+}
+
+.inputValue:hover {
+     border: 1px solid black;
 }
 
 
