@@ -30,11 +30,13 @@ export const userLogin = async (data ) => {
 
     try { 
        const response = await axios(req);
+       console.log( response );
         return response;
+
     } catch (error) {
         console.log( error );
-        const err = error.request.response;
-       return err;
+        // const err = error.request.response;
+       return error;
     }
 
     

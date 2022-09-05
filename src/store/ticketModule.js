@@ -12,111 +12,118 @@ const USERSTATUS = 'userStatus';
 
 /** States of the Store */
 const state = {
-    accessToken : localStorage.getItem(TOKEN_KEY) || '',
-    email : localStorage.getItem(EMAIL_KEY) || '',
-    message : localStorage.getItem(MESSAGE_KEY) || '',
-    name : localStorage.getItem(NAME_KEY) || '',
-    userId : localStorage.getItem(USERID) || '',
-    userType : localStorage.getItem(USERTYPE) || '',
-    userStatus : localStorage.getItem(USERSTATUS) || '',
+    accessToken: localStorage.getItem(TOKEN_KEY) || '',
+    email: localStorage.getItem(EMAIL_KEY) || '',
+    message: localStorage.getItem(MESSAGE_KEY) || '',
+    name: localStorage.getItem(NAME_KEY) || '',
+    userId: localStorage.getItem(USERID) || '',
+    userType: localStorage.getItem(USERTYPE) || '',
+    userStatus: localStorage.getItem(USERSTATUS) || '',
 }
 
 /** Getters of the Store */
 const getters = {
-    getToken: state=> state.accessToken,
-    userEmail : (state) => state.email,
-    userMessage : (state) => state.message,
-    userName : (state) => state.name,
-    getUserID : (state) => state.userId,
-    getUserType : (state) => state.userType,
-    getUserStatus : (state) => state.userStatus,
+    getToken: state => state.accessToken,
+    userEmail: (state) => state.email,
+    userMessage: (state) => state.message,
+    userName: (state) => state.name,
+    getUserID: (state) => state.userId,
+    getUserType: (state) => state.userType,
+    getUserStatus: (state) => state.userStatus,
 }
 
 /** Actions of the Store */
 const actions = {
 
-    
- async login( { commit } , data  ){
-    
-    const response = await userLogin(data  );
-    if( response.data.status == 200  ){
-        const {
-            message ,
-            user : {
-                name ,
-                userId ,
-                email ,
-                userType ,
-                userStatus , 
-                accessToken , 
-            } , 
-        } = response.data ;
 
-        localStorage.setItem(MESSAGE_KEY  , message);
-        localStorage.setItem(NAME_KEY , name);
-        localStorage.setItem(USERID , userId);
-        localStorage.setItem(EMAIL_KEY , email);
-        localStorage.setItem(USERTYPE , userType);
-        localStorage.setItem(USERSTATUS  , userStatus);
-        localStorage.setItem(TOKEN_KEY , accessToken);
+    async login({ commit }, data) {
 
-        commit('setToken', accessToken);
-        commit('setMessage', message);
-        commit('setName', name);
-        commit('setUserId', userId);
-        commit('setEmail', email);
-        commit('setUserType', userType);
-        commit('setUserStatus', userStatus);
-        
-        console.log("API Checked !")
-        console.log("ResponseStore : ", response );
-        return response;
-        
-    }else {
-        console.log("API Checked !")
-        console.log("ResponseStore : ", response );
-        return response;
+        try {
+
+
+
+            const response = await userLogin(data);
+            if (response.data.status == 200) {
+                const {
+                    message,
+                    user: {
+                        name,
+                        userId,
+                        email,
+                        userType,
+                        userStatus,
+                        accessToken,
+                    },
+                } = response.data;
+
+                localStorage.setItem(MESSAGE_KEY, message);
+                localStorage.setItem(NAME_KEY, name);
+                localStorage.setItem(USERID, userId);
+                localStorage.setItem(EMAIL_KEY, email);
+                localStorage.setItem(USERTYPE, userType);
+                localStorage.setItem(USERSTATUS, userStatus);
+                localStorage.setItem(TOKEN_KEY, accessToken);
+
+                commit('setToken', accessToken);
+                commit('setMessage', message);
+                commit('setName', name);
+                commit('setUserId', userId);
+                commit('setEmail', email);
+                commit('setUserType', userType);
+                commit('setUserStatus', userStatus);
+
+                console.log("API Checked !")
+                console.log("ResponseStore : ", response);
+                return response;
+
+            } else {
+                console.log("API Checked !")
+                console.log("ResponseStore : ", response);
+                return response;
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
-}
 
 }
 
 /** Mutations of the Store */
 const mutations = {
 
-    setToken( state , accessToken ){
+    setToken(state, accessToken) {
         state.accessToken = accessToken;
     },
 
-    setMessage( state , message ){
+    setMessage(state, message) {
         state.message = message;
     },
 
-    setName( state , name ){
+    setName(state, name) {
         state.name = name;
     },
 
-    setUserId( state , userId ){
+    setUserId(state, userId) {
         state.userId = userId;
     },
 
-    setEmail( state , email ){
+    setEmail(state, email) {
         state.email = email;
     },
 
-    setUserType( state , userType ){
+    setUserType(state, userType) {
         state.userType = userType;
     },
 
-    setUserStatus( state , userStatus ){
+    setUserStatus(state, userStatus) {
         state.userStatus = userStatus;
     },
 }
 
 
 export default {
-    state ,
-    getters , 
-    actions , 
-    mutations ,
+    state,
+    getters,
+    actions,
+    mutations,
 };

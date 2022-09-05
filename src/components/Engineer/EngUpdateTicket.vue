@@ -112,6 +112,8 @@ export default {
         this.ticketId
       );
       this.ticketsDetails = response.data;
+      console.log( this.ticketsDetails);
+
       if (response) {
         this.$toast.success(response.data.message);
       }

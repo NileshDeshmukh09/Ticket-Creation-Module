@@ -3,17 +3,19 @@
     <EngineerNavBar />
     <!-- <h1>Engineer Home !</h1> -->
     <!-- <h1 class="text-center text-white bg-primary">Users List</h1> -->
-    <div class="engineer">
+
+
+     <div class="engineer">
       <h1 class="text-center" >LIST OF THE Tickets :</h1>
       
       <div class="totalTIckets btn bg-light fw-bold">
         Total Tickets :
         <span class="text-secondary">
-          {{ ticketsList.data.tickets.length }}</span
+          {{ ticketsList.data.tickets ?  ticketsList.data.tickets.length : 0 }}</span
         >
       </div>
 
-      <div
+       <div
         class="users p-2"
         v-for="ticket in ticketsList.data.tickets"
         :key="ticket.id"
@@ -21,8 +23,7 @@
         <div class="userslist container">
           <div class="username d-flex justify-content-between">
             <h1 class="name">
-              {{ ticket.title }}
-              <!-- Name -->
+              {{ ticket.title ? ticket.title : "" }}
             </h1>
             <div class="fw-bold p-2">
               <button class="edit btn btn-sm fw-bold">
@@ -37,19 +38,18 @@
 
           <div class="usersValue d-flex justify-content-between">
             <p class="userId text-secondary">
-              {{ ticket.description }}
-              <!-- userTYpe -->
+              {{  ticket.description ? ticket.description : ""  }}
             </p>
             <p class="email text-secondary">
               <span class="text-dark"> AssignedTo : </span>
-              {{ ticket.assignee }}
+              {{ ticket.assignee ? ticket.assignee : '' }}
             </p>
           </div>
 
           <div class="usersTypes d-flex justify-content-between">
             <p class="userType">
               <span> Ticket-ID : </span>
-              {{ ticket.id }}
+              {{  ticket.id ? ticket.id : '' }}
             </p>
             <p
               class="userStatus fw-bolder text-success"
@@ -58,7 +58,7 @@
               <span class="text-dark fw-bold">STATUS : </span>
 
               <button class="btn btn-success fw-bold">
-                {{ ticket.status }}
+                {{ ticket.status ? ticket.status  : ''}}
               </button>
             </p>
             <p
@@ -68,7 +68,7 @@
               <span class="text-dark fw-bold">STATUS : </span>
 
               <button class="btn btn-danger fw-bold">
-                {{ ticket.status }}
+                {{ ticket.status ? ticket.status : '' }}
               </button>
             </p>
             <p
@@ -78,7 +78,7 @@
               <span class="text-dark fw-bold">STATUS : </span>
 
               <button class="btn btn-danger fw-bold">
-                {{ ticket.status }}
+                {{ ticket.status ? ticket.status :'' }}
               </button>
             </p>
             <p
@@ -87,7 +87,7 @@
             >
               <span class="text-dark fw-bold">STATUS : </span>
 
-              <button class="btn btn-info fw-bold">{{ ticket.status }}</button>
+              <button class="btn btn-info fw-bold">{{ ticket.status ? ticket.status : '' }}</button>
             </p>
 
             <p
@@ -95,17 +95,21 @@
               v-else-if="user.userStatus == 'PENDING'"
             >
               <span class="text-dark">STATUS : </span>
-              {{ ticket.status }}
+              {{ ticket.status ? ticket.status : '' }}
             </p>
           </div>
 
           <div class="time d-flex justify-content-end p-2">
-            <span>{{ ticket.updatedAt.slice(0, 10) }}</span>
+            <span>{{ ticket.updatedAt.slice(0, 10) ? ticket.updatedAt.slice(0, 10) : '' }}</span>
           </div>
         </div>
         <br />
-      </div>
-    </div>
+      </div> 
+    </div> 
+
+      <!-- <EngineerTickets  :ticketsList = 'ticketsList' /> -->
+
+
   </div>
 </template>
 
@@ -113,10 +117,13 @@
 import { ticketsMethod } from "@/services/Tickets";
 import { mapGetters } from "vuex";
 import EngineerNavBar from "./EngineerNavBar.vue";
+// import EngineerTickets from './EngineerTickets.vue'
 export default {
   name: "EngineerHome",
   components: {
     EngineerNavBar,
+    // EngineerTickets
+
   },
   data() {
     return {
@@ -130,6 +137,7 @@ export default {
   created: async function () {
     let response = await ticketsMethod.getAllTickets(this.getToken);
     this.ticketsList = response;
+    console.log( this.ticketsList );
     this.$toast.success(this.ticketsList.data.message);
     console.log(response);
   },
