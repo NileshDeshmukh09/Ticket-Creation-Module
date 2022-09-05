@@ -7,7 +7,7 @@
       <div class="totalTIckets btn bg-light fw-bold">
         Total Tickets :
         <span class="text-secondary">
-          {{ ticketsList.data.tickets.length }}</span
+          {{ ticketsList.data.tickets ?  ticketsList.data.tickets.length : 0 }}</span
         >
       </div>
 
@@ -19,7 +19,7 @@
         <div class="userslist container">
           <div class="username d-flex justify-content-between">
             <h1 class="name">
-              {{ ticket.title }}
+              {{ ticket.title ? ticket.title : '' }}
               <!-- Name -->
             </h1>
             <div class="fw-bold p-2">
@@ -35,19 +35,19 @@
 
           <div class="usersValue d-flex justify-content-between">
             <p class="userId text-secondary">
-              {{ ticket.description }}
+              {{ ticket.description  ? ticket.description : ''}}
               <!-- userTYpe -->
             </p>
             <p class="email text-secondary">
               <span class="text-dark"> AssignedTo : </span>
-              {{ ticket.assignee }}
+              {{ ticket.assignee ? ticket.assignee : '' }}
             </p>
           </div>
 
           <div class="usersTypes d-flex justify-content-between">
             <p class="userType">
               <span> Ticket-ID : </span>
-              {{ ticket.id }}
+              {{ ticket.id ? ticket.id : ''}}
             </p>
             <p
               class="userStatus fw-bolder text-success"
@@ -56,7 +56,7 @@
               <span class="text-dark fw-bold">STATUS : </span>
 
               <button class="btn btn-success fw-bold">
-                {{ ticket.status }}
+                {{ ticket.status ? ticket.status : ''}}
               </button>
             </p>
             <p
@@ -66,7 +66,7 @@
               <span class="text-dark fw-bold">STATUS : </span>
 
               <button class="btn btn-danger fw-bold">
-                {{ ticket.status }}
+                {{ ticket.status ? ticket.status : '' }}
               </button>
             </p>
             <p
@@ -76,7 +76,7 @@
               <span class="text-dark fw-bold">STATUS : </span>
 
               <button class="btn btn-danger fw-bold">
-                {{ ticket.status }}
+                {{ ticket.status ? ticket.status : '' }}
               </button>
             </p>
             <p
@@ -85,7 +85,7 @@
             >
               <span class="text-dark fw-bold">STATUS : </span>
 
-              <button class="btn btn-info fw-bold">{{ ticket.status }}</button>
+              <button class="btn btn-info fw-bold">{{ ticket.status ? ticket.status : '' }}</button>
             </p>
 
             <p
@@ -93,12 +93,12 @@
               v-else-if="user.userStatus == 'PENDING'"
             >
               <span class="text-dark">STATUS : </span>
-              {{ ticket.status }}
+              {{ ticket.status ? ticket.status : '' }}
             </p>
           </div>
 
           <div class="time d-flex justify-content-end p-2">
-            <span>{{ ticket.updatedAt.slice(0, 10) }}</span>
+            <span>{{ ticket.updatedAt ? ticket.updatedAt.slice(0 , 10) : "" }}</span>
           </div>
         </div>
         <br />

@@ -7,7 +7,7 @@
       </div>
 
       <div class="ticketsCount text-center">
-        <p><span>Tickets :</span> {{ ticketsList.data.tickets.length }}</p>
+        <p><span>Tickets :</span> {{ ticketsList.data.tickets ?  ticketsList.data.tickets.length : 0 }}</p>
 
         <br />
       </div>
@@ -21,14 +21,14 @@
           <div class="container">
             <h6 class="display-6 title d-flex">
               <span> Title :</span>
-              <p class="mx-2 ticketTitle fw-bold">{{ ticket.title }}</p>
+              <p class="mx-2 ticketTitle fw-bold">{{ ticket.title ? ticket.title : '' }}</p>
             </h6>
             <p class="lead description fw-bold">
-              <span>Description :</span> {{ ticket.description }}
+              <span>Description :</span> {{ ticket.description ? ticket.description : '' }}
             </p>
             <div class="statusAndEnginner d-flex justify-content-between">
-              <p><span>Status : </span>{{ ticket.status }}</p>
-              <h5><span>Engineer : </span>{{ ticket.assignee }}</h5>
+              <p><span>Status : </span>{{ ticket.status ? ticket.status :'' }}</p>
+              <h5><span>Engineer : </span>{{ ticket.assignee ? ticket.assignee : '' }}</h5>
             </div>
 
             <div class="icons">
@@ -44,11 +44,11 @@
             <div class="dateAndTime d-flex justify-content-end">
               <p>
                 <span class="date mx-2">{{
-                  ticket.updatedAt.substring(0, 10)
+                  ticket.updatedAt ? ticket.updatedAt.substring(0, 10) : ''
                 }}</span>
 
                 <span class="time">{{
-                  ticket.updatedAt.substring(11, 16)
+                  ticket.updatedAt ? ticket.updatedAt.substring(11, 16) : ''
                 }}</span>
               </p>
             </div>
