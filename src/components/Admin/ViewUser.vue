@@ -3,22 +3,23 @@
     <AdminNavBar />
     <h1 class="text-center text-primary ">View USER</h1>
    
-    <div class="updateForm bg-success text-center">
+    <div class="updateForm bg-success text-center ">
       <div class="card text-center">
-        <div class="card-header">Profile</div>
+        <div class="card-header fw-bold"><h2> Profile</h2></div>
         <div class="card-body">
-          <!-- <div class="name">
-          <h2><span>NAME : </span>{{ userDetails.data.user[0].name }} </h2>
-          <h3><span>USERID : </span>{{ userDetails.data.user[0].userId }} </h3> 
-
-         </div> -->
+      
           <ul class="list-group list-group-flush">
             <li class="list-group-item" > <span >Name :</span> <b>{{ userDetails.data.user[0].name }}</b></li>
-            <li class="list-group-item"><span>UserID :</span>{{ userDetails.data.user[0].userId }}</li>
+            <li class="list-group-item fw-100"><span>UserID :</span>{{ userDetails.data.user[0].userId }}</li>
             <li class="list-group-item"><span>EmailID : </span>{{ userDetails.data.user[0].email }}</li>
             <li class="list-group-item"><span>UserType : </span>{{ userDetails.data.user[0].userType }}</li>
-            <li class="list-group-item"><span>UserStatus : </span>{{ userDetails.data.user[0].userStatus }}</li>
+            <li class="list-group-item text-success fw-bold" v-if="userDetails.data.user[0].userStatus === 'APPROVED'"><span class="text-dark">UserStatus : </span>{{ userDetails.data.user[0].userStatus }}</li>
+            <li class="list-group-item text-danger fw-bold" v-else><span class="text-dark">UserStatus : </span>{{ userDetails.data.user[0].userStatus }}</li>
           </ul>
+        </div>
+        <div class="card-footer">
+          <button class="btn text-primary"><router-link class="text-decoration-none fw-bold" :to="`/admin/users`">BACK</router-link></button>
+
         </div>
         
       </div>
@@ -63,4 +64,12 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.card {
+  box-shadow: 3px 3px 10px 3px black;
+}
+.card-header {
+  background: rgb(161, 159, 159);
+}
+
 </style>

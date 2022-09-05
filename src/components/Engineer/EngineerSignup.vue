@@ -226,7 +226,7 @@ export default {
           this.$router.push("/login");
         }, 1000);
       }else{
-        this.$toast.error( response.data )
+        this.$toast.error( response )
       }
      
     },

@@ -136,7 +136,7 @@ import NavBar from "./NavBar.vue";
 import { required, email, sameAs } from 'vuelidate/lib/validators'
 // import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
 import { signup } from "@/services/auth.services";
-// import { reactive , computed  } from 'vue'
+
 
 
 
