@@ -1,7 +1,7 @@
 <template>
   <div>
     <EngineerNavBar />
-    <pre>{{ ticketsDetails }}</pre>
+    <!-- <pre>{{ ticketsDetails }}</pre> -->
     <div class="mainDiv">
       <div class="editUser">
         <h3 class="text-center fw-bold">Edit user</h3>

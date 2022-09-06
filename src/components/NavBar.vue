@@ -19,7 +19,8 @@
             <ul class="navbar-nav">
               <li class="nav-item nav-menu">
                 <router-link
-                  class="nav-link active nav-menu"
+                  class="nav-link nav-menu"
+                  :class="{active : isActive}"
                   aria-current="page"
                   to="/login"
                   >Login</router-link
@@ -44,6 +45,11 @@
 <script>
 export default {
   name: "NewNavBar",
+  data(){
+    return {
+      isActive : false
+    }
+  }
 };
 </script>
 

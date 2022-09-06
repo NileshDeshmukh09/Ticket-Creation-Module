@@ -110,7 +110,8 @@ export default {
       const response = await this.login(data);
 
       console.log("msg : ", response);
-  
+
+    
       if (response.data.status == 200) {
         /** if the user is CUSTOMER */
         if (response.data.user.userType === "CUSTOMER") {
