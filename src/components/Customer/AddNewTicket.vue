@@ -3,7 +3,7 @@
     <CustomerNavBar />
     <div class="add-ticket-form bg-warning">
       <h2 class="text-center text-white fw-bold my-3">
-        ADD NEW TICKET | CUSTOMER
+        RAISE THE ISSUE | CUSTOMER
       </h2>
 
       <hr>

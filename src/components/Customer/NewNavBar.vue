@@ -18,7 +18,7 @@
           <ul class="navbar-nav ">
             
               <li class="nav-item">
-                <router-link class="nav-link active" aria-current="page" to="/tickets/add">AddTickets</router-link>
+                <router-link class="nav-link active" aria-current="page" to="/tickets/add">RAISE THE ISSUE</router-link>
               </li>
               <li class="nav-item">
                 <router-link class="nav-link" to="/customers">Tickets</router-link>
