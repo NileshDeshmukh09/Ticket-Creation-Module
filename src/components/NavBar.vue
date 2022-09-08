@@ -20,7 +20,6 @@
               <li class="nav-item nav-menu">
                 <router-link
                   class="nav-link nav-menu"
-                  :class="{active : isActive}"
                   aria-current="page"
                   to="/login"
                   >Login</router-link
@@ -45,11 +44,7 @@
 <script>
 export default {
   name: "NewNavBar",
-  data(){
-    return {
-      isActive : false
-    }
-  }
+ 
 };
 </script>
 
@@ -59,10 +54,18 @@ export default {
   font-weight: 900;
 }
 
+.nav-menu:hover {
+  color: black;
+  border-bottom: 2px;
+}
+
 #nav-bar {
   top: 0;
   box-shadow: 5px 5px 10px rgb(145, 143, 143);
   position: fixed;
   width: 100%;
 }
+
+
+
 </style>

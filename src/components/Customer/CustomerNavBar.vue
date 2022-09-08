@@ -20,10 +20,10 @@
             
               
               <li class="nav-item nav-menu">
-                <router-link class="nav-link active" aria-current="page" to="/customers/tickets/add">AddTickets</router-link>
+                <router-link class="nav-link active" aria-current="page" to="/customers/tickets/add">RAISE-A-ISSUE</router-link>
               </li>
               <li class="nav-item nav-menu">
-                <router-link class="nav-link" to="/customers/tickets">Tickets</router-link>
+                <router-link class="nav-link" to="/customers/tickets">ISSUES</router-link>
               </li>
               <li class="nav-item nav-menu">
                 <router-link class="nav-link" @click.prevent='logOut()' to="/login">Logout</router-link>

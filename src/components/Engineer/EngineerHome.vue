@@ -6,8 +6,9 @@
 
 
      <div class="engineer">
-      <h1 class="text-center" >LIST OF THE Tickets :</h1>
+      <h1 class="text-center" >LIST OF THE TICKETS :</h1>
       
+      <!-- <pre>{{ ticketsList }}</pre> -->
       <div class="totalTIckets btn bg-light fw-bold">
         Total Tickets :
         <span class="text-secondary">
@@ -47,7 +48,11 @@
           </div>
 
           <div class="usersTypes d-flex justify-content-between">
-            <p class="userType">
+            <p class="userType text-secondary" v-if="ticket.reporter">
+              <span class="text-dark fw-bold"> IssuedBy : </span>
+              {{  ticket.reporter ? ticket.reporter : '' }}
+            </p>
+            <p class="userType" v-else >
               <span> Ticket-ID : </span>
               {{  ticket.id ? ticket.id : '' }}
             </p>
@@ -100,7 +105,7 @@
           </div>
 
           <div class="time d-flex justify-content-end p-2">
-            <span>{{ ticket.updatedAt.slice(0, 10) ? ticket.updatedAt.slice(0, 10) : '' }}</span>
+            <span> CreatedAt : {{ ticket.updatedAt.slice(0, 10) ? ticket.updatedAt.slice(0, 10) : '' }}</span>
           </div>
         </div>
         <br />
@@ -150,6 +155,7 @@ export default {
 .engineer {
   margin-top: 100px;
 }
+
 @media screen and (max-width: 768px) {
   .usersValue {
     display: flex;

@@ -2,7 +2,8 @@
   <div>
 
      <div class="engineer">
-      <h1 class="text-center" >LIST OF THE Tickets :</h1>
+      <h1 class="text-center" >LIST OF THE TICKETS </h1>
+      <pre>{{ ticketsList }}</pre>
       
       <div class="totalTIckets btn bg-light fw-bold">
         Total Tickets :
@@ -46,7 +47,7 @@
 
           <div class="usersTypes d-flex justify-content-between">
             <p class="userType">
-              <span> Ticket-ID : </span>
+              <span> IssuedBy : </span>
               {{ ticket.id ? ticket.id : ''}}
             </p>
             <p

@@ -4,7 +4,7 @@
     <!-- <pre>{{ ticketsDetails }}</pre> -->
     <div class="mainDiv">
       <div class="editUser">
-        <h3 class="text-center fw-bold">Edit user</h3>
+        <h3 class="text-center fw-bold">EDIT TICKET | ENGINEER</h3>
         <form @submit.prevent="updateTicket">
           <div class="row">
             <div class="title col-md-6">

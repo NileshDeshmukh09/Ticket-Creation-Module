@@ -1,10 +1,8 @@
 <template>
-  <div>
+  <div >
     <CustomerNavBar />
-    <pre>{{ tickets }}</pre>
-    <!-- <pre>{{tickets.data.tickets[0]}}</pre> -->
-    <!-- ---------- -->
-   
+    <!-- <pre>{{ tickets }}</pre> -->
+    
 <!-- 
      <div class="CustomerDiv" v-if=' !(tickets.data.message ==  "No tickets created by You !!!")' >
       <div class="Home">
@@ -104,12 +102,14 @@ export default {
 
 <style>
 .OneTickets {
-  background: rgb(209, 52, 52);
+  /* background: rgb(209, 52, 52); */
+  background: rgb(188, 185, 185);
   padding: 10px;
 }
 
 .container {
-  background: rgb(79, 159, 224);
+  /* background: rgb(79, 159, 224); */
+  background: rgb(241, 245, 248);
   border-radius: 10px;
   box-shadow: 3px 5px 3px black;
 }
@@ -119,7 +119,7 @@ export default {
   height: 50px;
   padding: 20px;
   margin: 20px;
-  background: rgb(248, 125, 2);
+  background: rgb(167, 167, 167);
   border-radius: 5px;
   box-shadow: 3px 3px 3px black;
 }

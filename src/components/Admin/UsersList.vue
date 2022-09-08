@@ -7,9 +7,11 @@
 
       <!-- <pre>{{ usersList.data.users[0] }} </pre> -->
 
-      <div class="totalusers btn bg-light  fw-bold">
+      <div class="totalusers btn bg-light fw-bold">
         Total Users :
-        <span class="text-secondary"> {{ usersList.data.users ? usersList.data.users.length : 0 }}</span>
+        <span class="text-secondary">
+          {{ usersList.data.users ? usersList.data.users.length : 0 }}</span
+        >
       </div>
       <div
         class="users p-2"
@@ -17,8 +19,8 @@
         :key="user.userId"
       >
         <div class="userslist container">
-          <div class="username d-flex justify-content-between">
-            <h1 class="name">{{ user.name ? user.name : ''}}</h1>
+          <div class="username divRow d-flex justify-content-between">
+            <h1 class="name">{{ user.name ? user.name : "" }}</h1>
             <div class="buttons d-flex justify-content-between">
               <button class="delete btn btn-sm fw-bold">
                 <router-link
@@ -36,29 +38,33 @@
               </button>
             </div>
           </div>
-          <div class="usersValue d-flex justify-content-between">
-            <p class="userId text-secondary">{{ user.userType ? user.userType : '' }}</p>
+          <div class="usersValue divRow d-flex justify-content-between">
+            <p class="userId text-secondary">
+              {{ user.userType ? user.userType : "" }}
+            </p>
             <p class="email text-secondary">
-              <span class="text-dark"> Email : </span>{{ user.email ? user.email : '' }}
+              <span class="text-dark"> Email : </span
+              >{{ user.email ? user.email : "" }}
             </p>
           </div>
-          <div class="usersTypes d-flex">
+          <div class="usersTypes divRow d-flex ">
             <p class="userType col-md-6">
-              <span> USER-ID : </span>{{ user.userId ? user.userId : ''}}
+              <span> USER-ID : </span>{{ user.userId ? user.userId : "" }}
             </p>
             <p
               class="userStatus col-md-6 fw-bolder text-success"
               v-if="user.userStatus == 'APPROVED'"
             >
               <span class="text-dark fw-bold">STATUS : </span
-              >{{ user.userStatus ? user.userStatus :'' }}
+              >{{ user.userStatus ? user.userStatus : "" }}
             </p>
 
             <p
               class="userStatus col-md-6 fw-bolder text-danger"
               v-else-if="user.userStatus == 'PENDING'"
             >
-              <span class="text-dark">STATUS : </span>{{ user.userStatus ? user.userStatus :'' }}
+              <span class="text-dark">STATUS : </span
+              >{{ user.userStatus ? user.userStatus : "" }}
             </p>
           </div>
         </div>
@@ -97,10 +103,9 @@ export default {
 </script>
 
 <style>
-
 .page {
   margin-top: 100px;
-   background: rgb(222, 221, 221);
+  background: rgb(222, 221, 221);
 }
 #userspage {
   background: rgb(222, 221, 221);
@@ -156,10 +161,15 @@ span {
     flex-wrap: wrap;
   }
 
-  .userTypes {
+  .usersTypes {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    /* flex-direction: column; */
+    justify-content: space-between;
+  }
+
+  .divRow  {
+    margin-top: 50px;
   }
 }
 </style>

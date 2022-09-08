@@ -6,6 +6,7 @@
         <h3 class="text-secondary">List of Tickets created</h3>
       </div>
 
+      <!-- <pre>{{ ticketsList }}</pre> -->
       <div class="ticketsCount text-center">
         <p><span>Tickets :</span> {{ ticketsList.data.tickets ?  ticketsList.data.tickets.length : 0 }}</p>
 
@@ -42,13 +43,13 @@
             </div>
 
             <div class="dateAndTime d-flex justify-content-end">
-              <p>
+              <p class="fw-bold"> CreatedAt : 
                 <span class="date mx-2">{{
                   ticket.updatedAt ? ticket.updatedAt.substring(0, 10) : ''
                 }}</span>
 
                 <span class="time">{{
-                  ticket.updatedAt ? ticket.updatedAt.substring(11, 16) : ''
+                  ticket.createdAt ? ticket.createdAt.substring(0, 10) : ''
                 }}</span>
               </p>
             </div>
