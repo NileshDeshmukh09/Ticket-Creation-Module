@@ -105,7 +105,7 @@
           </div>
 
           <div class="time d-flex justify-content-end p-2">
-            <span> CreatedAt : {{ ticket.updatedAt.slice(0, 10) ? ticket.updatedAt.slice(0, 10) : '' }}</span>
+            <span> CreatedAt : {{ ticket.updatedAt | formatDate }}</span>
           </div>
         </div>
         <br />
