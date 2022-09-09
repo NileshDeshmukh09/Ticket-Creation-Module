@@ -44,13 +44,15 @@
 
             <div class="dateAndTime d-flex justify-content-end">
               <p class="fw-bold"> CreatedAt : 
-                <span class="date mx-2">{{
+                <!-- <span class="date mx-2">{{
                   ticket.updatedAt ? ticket.updatedAt.substring(0, 10) : ''
-                }}</span>
+                }}</span> -->
 
-                <span class="time">{{
+                <!-- <span class="time">{{
                   ticket.createdAt ? ticket.createdAt.substring(0, 10) : ''
-                }}</span>
+                }}</span> -->
+                <span class="date mx-2"> {{ ticket.createdAt | formatDate }}</span>
+                <span class="time">{{ ticket.updatedAt | formatDate}}</span>
               </p>
             </div>
           </div>
@@ -63,9 +65,16 @@
 </template>
 
 <script>
+import formatDateMixin from '@/mixins/formatDate';
 export default {
     name : "TicketsHome",
-    props : ['ticketsList']
+    data() {
+      return {
+          format: 'indian'
+      }
+    },
+    props : ['ticketsList'],
+    mixins: [ formatDateMixin ]
 }
 </script>
 
