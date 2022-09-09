@@ -155,7 +155,7 @@ span {
   background: rgb(222, 221, 221);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .usersValue {
     display: flex;
     flex-wrap: wrap;
