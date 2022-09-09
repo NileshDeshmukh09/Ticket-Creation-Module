@@ -52,7 +52,7 @@
                   ticket.createdAt ? ticket.createdAt.substring(0, 10) : ''
                 }}</span> -->
                 <span class="date mx-2"> {{ ticket.createdAt | formatDate }}</span>
-                <span class="time">{{ ticket.updatedAt | formatDate}}</span>
+                <!-- <span class="time">{{ ticket.updatedAt | formatDate}}</span> -->
               </p>
             </div>
           </div>
