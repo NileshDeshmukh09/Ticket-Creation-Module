@@ -1,10 +1,11 @@
 <template>
   <div id="home">
     <CustomerNavBar />
-    <div class="add-ticket-form bg-warning">
+    <div class="add-ticket-form">
       <h2 class="text-center text-white fw-bold my-3">
-        UPDATE TICKETS | CUSTOMER
+        UPDATE TICKET
       </h2>
+      <p class="text-center fw-bold">CUSTOMER</p>
 
       <form @submit.prevent="OnSubmit">
         <div class="form-group">
@@ -12,7 +13,7 @@
           <input
             v-model.trim="$v.title.$model"
             type="text"
-            class="form-control"
+            class="form-control fw-bold"
             :class="{
               'is-valid': !$v.title.$invalid,
               'is-invalid': $v.title.$error,
@@ -31,7 +32,7 @@
           <textarea
             name="description"
             v-model.trim="$v.description.$model"
-            class="form-control"
+            class="form-control fw-bold"
             :class="{
               'is-valid': !$v.description.$invalid,
               'is-invalid': $v.description.$error,
@@ -49,7 +50,7 @@
           </div>
         </div>
        
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
       </form>
     </div>
   </div>
@@ -134,8 +135,11 @@ export default {
 
 <style scoped>
 .add-ticket-form {
+  border: 1px solid rgb(26, 255, 164);
+  background: rgba(26, 164, 98, 0.712);
+  box-shadow: 5px 5px 10px rgb(128, 126, 126);
   width: 50%;
-  margin: 50px auto;
+  margin: 100px auto;
   padding: 20px;
 }
 
@@ -145,12 +149,23 @@ label {
   margin-top: 20px;
 }
 
-input::placeholder,
-textarea::placeholder {
+input::placeholder ,
+textarea::placeholder  {
   font-weight: 900;
 }
 
 span {
   font-weight: 900;
+}
+
+p {
+  font-size: 25px;
+}
+
+@media screen and (max-width: 768px) {
+  .add-ticket-form{
+    width: 70%;
+    margin-top: 100px;
+  }
 }
 </style>

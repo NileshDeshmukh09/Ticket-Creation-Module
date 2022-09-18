@@ -54,9 +54,9 @@ export default {
   font-weight: 900;
 }
 
-.nav-menu:hover {
+.nav-link:hover {
   color: black;
-  border-bottom: 2px;
+  border-bottom: 20px;
 }
 
 #nav-bar {

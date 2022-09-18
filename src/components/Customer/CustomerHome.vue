@@ -1,69 +1,8 @@
 <template>
-  <div >
+  <div class="customerhome">
     <CustomerNavBar />
-    <!-- <pre>{{ tickets }}</pre> -->
-    
-<!-- 
-     <div class="CustomerDiv" v-if=' !(tickets.data.message ==  "No tickets created by You !!!")' >
-      <div class="Home">
-        <h3 class="text-secondary">List of Tickets created</h3>
-      </div>
-
-      <div class="ticketsCount text-center">
-        <p><span>Tickets :</span> {{ ticketsList.data.tickets.length }}</p>
-
-        <br />
-      </div>
-
-      <div
-        class="ticketsList"
-        v-for="ticket in ticketsList.data.tickets"
-        :key="ticket.id"
-      >
-        <div class="jumbotron jumbotron-fluid OneTickets">
-          <div class="container">
-            <h6 class="display-6 title d-flex">
-              <span> Title :</span>
-              <p class="mx-2 ticketTitle">{{ ticket.title }}</p>
-            </h6>
-            <p class="lead description">
-              <span>Description :</span> {{ ticket.description }}
-            </p>
-            <div class="statusAndEnginner d-flex justify-content-between">
-              <p><span>Status : </span>{{ ticket.status }}</p>
-              <h5><span>Engineer : </span>{{ ticket.assignee }}</h5>
-            </div>
-
-            <div class="icons">
-              <button class="btn bg-primary mt-3">
-                <router-link
-                  :to="`/customers/tickets/${ticket.id}`"
-                  class="text-white text-decoration-none updateTicket"
-                  >update</router-link
-                >
-              </button>
-            </div>
-
-            <div class="dateAndTime d-flex justify-content-end">
-              <p>
-                <span class="date mx-2">{{
-                  ticket.updatedAt.substring(0, 10)
-                }}</span>
-
-                <span class="time">{{
-                  ticket.updatedAt.substring(11, 16)
-                }}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <br />
-      </div>  
-    </div> -->
-
-    <TicketsHome :ticketsList = 'ticketsList' />
-
-  </div> 
+    <TicketsHome :ticketsList="ticketsList" />
+  </div>
 </template>
 
 <script>
@@ -80,8 +19,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getToken" , "userMessage"]),
-
+    ...mapGetters(["getToken", "userMessage" , "userName"]),
   },
   components: {
     CustomerNavBar,
@@ -92,36 +30,42 @@ export default {
     this.ticketsList = response;
     this.$toast.success(this.ticketsList.data.message);
     console.log(response);
-
-    // if( this.ticketsList.data.tickets.length === null ){
-    //   this.$toast.error( "No Ticket Created !" )
-    // }
   },
 };
 </script>
 
 <style>
-.OneTickets {
-  /* background: rgb(209, 52, 52); */
-  background: rgb(188, 185, 185);
+.customerhome{
+  background: rgba(19, 168, 116, 0.954);
+}
+.CustomerDiv {
+  margin-top: 60px;
+  
+}
+.small-desc{
+  font-size: 20px;
+  font-weight: 700;
+  margin: 20px 60px;
+
+}
+.OneTicket {
   padding: 10px;
 }
 
 .container {
-  /* background: rgb(79, 159, 224); */
-  background: rgb(241, 245, 248);
-  border-radius: 10px;
-  box-shadow: 3px 5px 3px black;
+  background: #8baedf;
+  border-radius: 1px;
+  box-shadow: 3px 5px 10px black;
 }
 
 .ticketsCount {
   width: 150px;
   height: 50px;
   padding: 20px;
-  margin: 20px;
-  background: rgb(167, 167, 167);
-  border-radius: 5px;
-  box-shadow: 3px 3px 3px black;
+  margin: 20px 60px;
+  background: rgb(221, 221, 221);
+  border-radius: 3px;
+  box-shadow: 2px 2px 5px black;
 }
 .ticketsCount p span {
   font-weight: 900;
@@ -134,21 +78,41 @@ export default {
   font-weight: 900;
 }
 
-span {
+.title span {
   font-weight: 900;
+  font-size: 35px;
 }
 
 .ticketTitle {
-  font-weight: 600;
-  font-size: 30px;
-}
-
-.title {
-  font-size: 10px;
+  font-weight: 800;
+  font-size: 25px;
+  margin-top: 10px;
 }
 
 .updateTicket {
   font-weight: 900;
   font-size: 15px;
+}
+
+.title-description {
+  color: rgb(134, 123, 123);
+
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .title span {
+    font-size: 25px;
+  }
+
+  .ticketTitle {
+    font-size: 20px;
+    margin-top: 5px;
+  }
+
+  .title-description {
+    font-size: 15px;
+    justify-content: space-between;
+  }
 }
 </style>

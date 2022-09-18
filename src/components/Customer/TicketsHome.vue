@@ -3,9 +3,8 @@
         
      <div class="CustomerDiv"  >
       <div class="Home">
-        <h3 class="text-secondary">List of Tickets created</h3>
+        <p class="small-desc text-light">{{ userName.toUpperCase() }} , Tickets created by you will show Here </p>
       </div>
-
       <!-- <pre>{{ ticketsList }}</pre> -->
       <div class="ticketsCount text-center">
         <p><span>Tickets :</span> {{ ticketsList.data.tickets ?  ticketsList.data.tickets.length : 0 }}</p>
@@ -13,30 +12,45 @@
         <br />
       </div>
 
+     
+
       <div
         class="ticketsList"
         v-for="ticket in ticketsList.data.tickets"
         :key="ticket.id"
       >
-        <div class="jumbotron jumbotron-fluid OneTickets">
+        <div class="jumbotron jumbotron-fluid OneTicket">
           <div class="container">
-            <h6 class="display-6 title d-flex">
+            <div class=" title d-flex justify-content-start">
               <span> Title :</span>
-              <p class="mx-2 ticketTitle fw-bold">{{ ticket.title ? ticket.title : '' }}</p>
-            </h6>
-            <p class="lead description fw-bold">
-              <span>Description :</span> {{ ticket.description ? ticket.description : '' }}
-            </p>
+              <p class="mx-2 ticketTitle">{{ ticket.title ? ticket.title : '' }}</p>
+            </div>
+
+            <div class="description d-flex">
+              <span >Description :  </span> 
+              <p class=" mx-3 title-description fw-bold">
+                {{ ticket.description ? ticket.description : '' }}
+              </p>
+            </div>
+
             <div class="statusAndEnginner d-flex justify-content-between">
-              <p><span>Status : </span>{{ ticket.status ? ticket.status :'' }}</p>
-              <h5><span>Engineer : </span>{{ ticket.assignee ? ticket.assignee : '' }}</h5>
+              <div class="status d-flex">
+                <span>Status : </span>
+                <p class=" mx-2 text-secondary fw-bold">{{ ticket.status ? ticket.status :'' }}</p>
+              </div>
+
+               <h5 class="text-secondary fw-bold">
+                <span class=" text-dark">Engineer : </span>
+               {{ ticket.assignee ? ticket.assignee : '' }}</h5>
+                       
+             
             </div>
 
             <div class="icons">
-              <button class="btn bg-primary mt-3">
+              <button class="btn btn-outline-primary mt-3">
                 <router-link
                   :to="`/customers/tickets/${ticket.id}`"
-                  class="text-white text-decoration-none updateTicket"
+                  class=" text-decoration-none updateTicket"
                   >update</router-link
                 >
               </button>
@@ -44,14 +58,8 @@
 
             <div class="dateAndTime d-flex justify-content-end">
               <p class="fw-bold"> CreatedAt : 
-                <!-- <span class="date mx-2">{{
-                  ticket.updatedAt ? ticket.updatedAt.substring(0, 10) : ''
-                }}</span> -->
-
-                <!-- <span class="time">{{
-                  ticket.createdAt ? ticket.createdAt.substring(0, 10) : ''
-                }}</span> -->
-                <span class="date mx-2"> {{ ticket.createdAt | formatDate }}</span>
+               
+                <span class="date mx-2 text-secondary"> {{ ticket.createdAt | formatDate }}</span>
                 <!-- <span class="time">{{ ticket.updatedAt | formatDate}}</span> -->
               </p>
             </div>
@@ -65,6 +73,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import formatDateMixin from '@/mixins/formatDate';
 export default {
     name : "TicketsHome",
@@ -74,7 +83,10 @@ export default {
       }
     },
     props : ['ticketsList'],
-    mixins: [ formatDateMixin ]
+    mixins: [ formatDateMixin ],
+     computed: {
+    ...mapGetters([ "userName"]),
+  },
 }
 </script>
 

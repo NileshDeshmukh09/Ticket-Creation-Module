@@ -1,8 +1,8 @@
 <template>
   <div id="home">
     <NavBar class="nav-bar" />
-    <div class="container login">
-      <h1 class="text-center text-black">LOGIN</h1>
+    <div class="container">
+      <h1 class="text-center text-primary">LOGIN</h1>
 
       <form @submit.prevent="onLogin">
         <div class="form-group m-3">
@@ -50,7 +50,7 @@
         <button type="submit" class="btn btn-primary m-3">Submit</button>
         <p class="float-end">
           Already have an Account ?
-          <router-link to="/signup"> Signup </router-link>
+          <router-link to="/signup" class="text-decoration-none"> Signup </router-link>
         </p>
       </form>
 
@@ -170,8 +170,14 @@ span {
 #home {
   height: 800px;
   background: rgb(42, 74, 216);
+
+}
+
+h1 {
+    text-shadow: 3px 3px 3px black;
 }
 .container {
+  box-shadow: 3px 2px 100px black;
   background: rgb(223, 223, 223);
   width: 50%;
   margin-top: 50px;
@@ -196,9 +202,10 @@ label {
   font-weight: 900;
 }
 .inputField {
-  height: 40px;
+  margin-top: 10px;
+  height: 50px;
   border: 1px solid black;
-  box-shadow: 0px 2px 3px black;
+  box-shadow: 2px 1px 7px black;
   font-weight: 900;
 }
 
@@ -217,8 +224,9 @@ p {
   }
 
   .container {
-    height: 350px;
+    height: 400px;
     width: 90%;
+    box-shadow: 3px 3px 10px black;
   }
 }
 </style>

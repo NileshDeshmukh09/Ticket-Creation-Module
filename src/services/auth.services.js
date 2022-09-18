@@ -35,26 +35,7 @@ export const userLogin = async (data ) => {
 
     } catch (error) {
         console.log( error );
-        // const err = error.request.response;
        return error;
     }
-
-    
-    // const response = await axios(req);
-    // console.log("AuthChecked : ", response.status);
-    // try {
-        
-    //     console.log("Response :", response.data.message)
-    //     return response;
-    // } catch (error) {
-        
-    //     // const msg = error;
-    //     // console.log("Response :", response.data.message)
-    //     // console.log("AuthService :", msg);
-    //     return error;
-    // }
-
-
-
 
 };
