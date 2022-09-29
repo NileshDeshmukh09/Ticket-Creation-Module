@@ -2,11 +2,11 @@
   <div>
 
      <div class="engineer">
-      <h1 class="text-center" >LIST OF THE TICKETS </h1>
+      <h1 class="text-center text-secondary" >LIST OF THE TICKETS </h1>
       <pre>{{ ticketsList }}</pre>
       
       <div class="totalTIckets btn bg-light fw-bold">
-        Total Tickets :
+        <!-- Total Tickets : -->
         <span class="text-secondary">
           {{ ticketsList.data.tickets ?  ticketsList.data.tickets.length : 0 }}</span
         >

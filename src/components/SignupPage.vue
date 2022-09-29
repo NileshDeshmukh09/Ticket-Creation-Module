@@ -191,7 +191,6 @@ export default {
         email: this.email,
         password: this.password,
       };
-      console.log(this.$v);
 
       const response = await signup(addData);
       

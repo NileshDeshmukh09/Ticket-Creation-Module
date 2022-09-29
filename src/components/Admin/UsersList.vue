@@ -108,7 +108,7 @@ export default {
   background: rgb(222, 221, 221);
 }
 #userspage {
-  background: rgb(222, 221, 221);
+  /* background: rgb(222, 221, 221); */
 }
 .totalUsers {
   margin-left: 50px;
