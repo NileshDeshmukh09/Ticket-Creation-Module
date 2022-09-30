@@ -53,7 +53,10 @@ export default {
 }
 
 .container {
-  background: #8baedf;
+  /* background: #8baedf; */
+  /* background: #9ec6fd; */
+  background: rgba(170, 250, 222, 0.954);
+
   border-radius: 1px;
   box-shadow: 3px 5px 10px black;
 }

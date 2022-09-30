@@ -3,7 +3,7 @@ import Config from '@/config';
 
 export const usersList = {
 
-    listOfUsers: async ( accessToken ) => {
+    listOfUsers: async ( accessToken , search ) => {
 
         const req = {
             method: 'GET',
@@ -12,10 +12,14 @@ export const usersList = {
                 'Content-Type': 'application/json',
                 'x-access-token': accessToken,
             },
+            params : {
+                name : search
+            }
         }
 
         try {
            const response =  await axios(req);
+           console.log( " Req params : ", req.params);
            return response;
            
         } catch (error) {

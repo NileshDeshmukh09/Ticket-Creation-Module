@@ -13,6 +13,11 @@
           {{ usersList.data.users ? usersList.data.users.length : 0 }}</span
         >
       </div>
+      <br>
+      <form  @submit.prevent="searchFilter">
+        <input type="text" v-model="search" class="form-control" placeholder="search here ...">
+        <button class="btn btn-sm btn-success">search</button>
+      </form>
       <div
         class="users p-2"
         v-for="user in usersList.data.users"
@@ -88,16 +93,27 @@ export default {
   data() {
     return {
       usersList: [],
+      search : "",
     };
   },
   computed: {
     ...mapGetters(["getToken"]),
   },
+  methods : {
+    async searchFilter(){
+      if( this.search != ""){
+        let  response = await usersList.listOfUsers(this.getToken , this.search);
+        this.usersList = response;
+        this.$toast.success(this.usersList.data.message);
+        console.log( "search : " , response);
+      }
+    }
+  },
   created: async function () {
-    let response = await usersList.listOfUsers(this.getToken);
+    var response = await usersList.listOfUsers(this.getToken);
     this.usersList = response;
     this.$toast.success(this.usersList.data.message);
-    console.log(response);
+    console.log( "Res : " , response);
   },
 };
 </script>
@@ -107,9 +123,7 @@ export default {
   margin-top: 100px;
   background: rgb(222, 221, 221);
 }
-#userspage {
-  /* background: rgb(222, 221, 221); */
-}
+
 .totalUsers {
   margin-left: 50px;
 }

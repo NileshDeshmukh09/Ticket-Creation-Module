@@ -46,12 +46,12 @@
           </div>
 
           <div class="usersTypes d-flex justify-content-between">
-            <p class="userType">
+            <p class="userType col-md-6">
               <span> IssuedBy : </span>
               {{ ticket.id ? ticket.id : ''}}
             </p>
             <p
-              class="userStatus fw-bolder text-success"
+              class="userStatus col-md-6 fw-bolder text-success"
               v-if="ticket.status == 'OPEN'"
             >
               <span class="text-dark fw-bold">STATUS : </span>
@@ -61,7 +61,7 @@
               </button>
             </p>
             <p
-              class="userStatus fw-bolder text-success"
+              class="userStatus col-md-6 fw-bolder text-success"
               v-else-if="ticket.status == 'CLOSED'"
             >
               <span class="text-dark fw-bold">STATUS : </span>
@@ -71,7 +71,7 @@
               </button>
             </p>
             <p
-              class="userStatus fw-bolder text-success"
+              class="userStatus col-md-6 fw-bolder text-success"
               v-else-if="ticket.status == 'REJECTED'"
             >
               <span class="text-dark fw-bold">STATUS : </span>
@@ -81,7 +81,7 @@
               </button>
             </p>
             <p
-              class="userStatus fw-bolder text-success"
+              class="userStatus col-md-6 fw-bolder text-success"
               v-else-if="ticket.status == 'IN_PROGRESS'"
             >
               <span class="text-dark fw-bold">STATUS : </span>
@@ -90,7 +90,7 @@
             </p>
 
             <p
-              class="userStatus fw-bolder text-danger"
+              class="userStatus col-md-6 fw-bolder text-danger"
               v-else-if="user.userStatus == 'PENDING'"
             >
               <span class="text-dark">STATUS : </span>
