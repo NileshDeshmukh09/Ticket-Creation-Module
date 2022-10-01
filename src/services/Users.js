@@ -3,7 +3,7 @@ import Config from '@/config';
 
 export const usersList = {
 
-    listOfUsers: async ( accessToken , search ) => {
+    listOfUsers: async ( accessToken , status , usertype ) => {
 
         const req = {
             method: 'GET',
@@ -13,7 +13,8 @@ export const usersList = {
                 'x-access-token': accessToken,
             },
             params : {
-                name : search
+                userStatus : status ,
+                userType : usertype
             }
         }
 

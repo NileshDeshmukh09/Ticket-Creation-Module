@@ -7,18 +7,58 @@
 
       <!-- <pre>{{ usersList.data.users[0] }} </pre> -->
 
-      <div class="totalusers btn bg-light fw-bold">
-        Total Users :
-        <span class="text-secondary">
-          {{ usersList.data.users ? usersList.data.users.length : 0 }}</span
-        >
+      <div class="user-search d-flex justify-content-between">
+         
+        <div class="totalusers btn bg-light fw-bold">
+          Total Users :
+          <span class="text-secondary">
+            {{ usersList.data.users ? usersList.data.users.length : 0 }}</span
+          >
+        </div>
+       <br />
+        <div class="searchFilter">
+          <h5 class="text-center text-light fw-bold p-1">FILTER RESULT</h5>
+          <form class="text-center" @submit.prevent="searchFilter">
+            <select name="" class="searchUserType fw-bold" v-model="status">
+              <option value="" class="fw-bold bg-dark text-light">
+                -- select status --
+              </option>
+              <option
+                v-for="currStatus in userStatus"
+                class="fw-bold"
+                :key="currStatus.id"
+                :value="currStatus.status"
+              >
+                {{ currStatus.status }}
+              </option>
+            </select>
+
+            <select name="" class="searchUserType fw-bold" v-model="usertype">
+              <option value="" class="fw-bold bg-dark text-light">
+                -- user type --
+              </option>
+              <option
+                v-for="type in userType"
+                class="fw-bold"
+                :key="type.id"
+                :value="type.status"
+              >
+                {{ type.status }}
+              </option>
+            </select>
+            <button class="btn btn-sm btn-outline-success">search</button>
+          </form>
+        </div>
       </div>
-      <br>
-      <form  @submit.prevent="searchFilter">
-        <input type="text" v-model="search" class="form-control" placeholder="search here ...">
-        <button class="btn btn-sm btn-success">search</button>
-      </form>
-      <div
+
+      <div v-if='usersList.data.message == "No user found !"' class="notFound bg-primary">
+        <div class="nouser">
+         <h3>- No User Found</h3>
+
+        </div>
+      </div>
+
+      <div v-else
         class="users p-2"
         v-for="user in usersList.data.users"
         :key="user.userId"
@@ -52,7 +92,7 @@
               >{{ user.email ? user.email : "" }}
             </p>
           </div>
-          <div class="usersTypes divRow d-flex ">
+          <div class="usersTypes divRow d-flex">
             <p class="userType col-md-6">
               <span> USER-ID : </span>{{ user.userId ? user.userId : "" }}
             </p>
@@ -93,39 +133,86 @@ export default {
   data() {
     return {
       usersList: [],
-      search : "",
+      status: "",
+      usertype: "",
+
+      userStatus: [
+        { id: 1, status: "APPROVED" },
+        { id: 2, status: "PENDING" },
+        { id: 3, status: "REJECTED" },
+      ],
+
+      userType: [
+        { id: 1, status: "CUSTOMER" },
+        { id: 2, status: "ENGINEER" },
+        { id: 3, status: "ADMIN" },
+      ],
     };
   },
   computed: {
     ...mapGetters(["getToken"]),
   },
-  methods : {
-    async searchFilter(){
-      if( this.search != ""){
-        let  response = await usersList.listOfUsers(this.getToken , this.search);
+  methods: {
+    async searchFilter() {
+      if (this.status != "" || this.usertype != "") {
+        var response = await usersList.listOfUsers( this.getToken, this.status, this.usertype  );
+      }
         this.usersList = response;
         this.$toast.success(this.usersList.data.message);
-        console.log( "search : " , response);
-      }
-    }
+        console.log("search : ", response);
+      
+    },
   },
   created: async function () {
     var response = await usersList.listOfUsers(this.getToken);
     this.usersList = response;
     this.$toast.success(this.usersList.data.message);
-    console.log( "Res : " , response);
+    console.log("Res : ", response);
   },
 };
 </script>
 
 <style>
+.user-search{
+  height: 50px;
+  margin: 30px 60px;
+  border-radius: 10px;
+}
+.searchFilter {
+  width: 50%;
+  height: 80px;
+  background-color: rgb(197, 197, 197);
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px black;
+  /* border-bottom-right-radius: 3px; */
+  /* margin-bottom: 20px; */
+}
+.searchUserType {
+  margin: 5px 10px;
+  width: 30%;
+  height: 30px;
+  border-radius: 5px;
+  font-weight: bold;
+}
 .page {
-  margin-top: 100px;
+  margin-top: 65px;
   background: rgb(222, 221, 221);
 }
 
-.totalUsers {
-  margin-left: 50px;
+.totalusers {
+  /* margin-left: 35px; */
+  text-align: center;
+  padding: 20px;
+  
+}
+
+.nouser {
+  width: 30%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red;
 }
 
 .userslist {
@@ -158,6 +245,10 @@ export default {
   padding-left: 14px;
   font-weight: 900;
 }
+
+.notFound{
+  text-align: center;
+}
 span {
   font-weight: 900;
 }
@@ -182,7 +273,7 @@ span {
     justify-content: space-between;
   }
 
-  .divRow  {
+  .divRow {
     margin-top: 50px;
   }
 }

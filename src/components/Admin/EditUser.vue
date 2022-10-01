@@ -63,9 +63,9 @@
           <div class="userStatus col-md-6">
 
             <label class="label" for="userStatus">USER STATUS</label>
-            <select name="" class="form-control selected fw-bold" v-model="userDetails.user[0].userStatus">
-              <option value="select" class="fw-bold">-- Select Status --</option>
-               <option v-for="currStatus in userStatus" class="fw-bold" :key="currStatus.id" :value="currStatus.status">{{ currStatus.status }}</option>
+            <select name="" class="selected fw-bold" v-model="userDetails.user[0].userStatus">
+              <option value="select" class="fw-bold bg-dark text-light">-- select status --</option>
+              <option v-for="currStatus in userStatus" class="fw-bold" :key="currStatus.id" :value="currStatus.status">{{ currStatus.status }}</option>
             </select>
           </div>
         </div>
@@ -104,6 +104,7 @@ export default {
          { id : 2, status : 'PENDING' },
          { id : 3, status : 'REJECTED' },
          ],
+     
       userDetails: [],
     };
   },
@@ -164,8 +165,10 @@ export default {
 .inputValue , .selected {
   height: 50px;
   font-weight: 900;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   box-shadow: 3px 3px 10px black ;
+  width: 100%;
+  border-radius: 5px;
 }
 
 .inputValue:hover {
