@@ -25,7 +25,7 @@
                   class="nav-link active"
                   aria-current="page"
                   to="/customers/tickets/add"
-                  >RAISE-A-ISSUE</router-link
+                  >Raise-an-issue</router-link
                 >
               </li>
               <li class="nav-item nav-menu">

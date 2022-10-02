@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <NavBar class="nav-bar" />
-    <div class="container">
+    <div class="container logindiv">
       <h1 class="text-center text-primary">LOGIN</h1>
 
       <form @submit.prevent="onLogin">
@@ -148,6 +148,10 @@ span {
   cursor: pointer;
 }
 
+.logindiv{
+  box-shadow: 10px 10px 10px black;
+}
+
 .dialogbox {
   display: flex;
   justify-content: space-between;
@@ -168,8 +172,8 @@ span {
 }
 
 #home {
-  height: 800px;
-  background: rgb(42, 74, 216);
+  height: 100vh;
+  background:  rgb(60, 108, 228);
 
 }
 
@@ -177,13 +181,12 @@ h1 {
     text-shadow: 3px 3px 3px black;
 }
 .container {
-  box-shadow: 3px 2px 100px black;
+  /* box-shadow: 3px 2px 10px black; */
   background: rgb(223, 223, 223);
   width: 50%;
-  margin-top: 50px;
-  border: 1px solid rgb(160, 179, 219);
+  border: 1px solid rgb(21, 42, 87);
   border-radius: 10px;
-  box-shadow: 3px 2px 10px rgb(192, 183, 183);
+  box-shadow: 3px 2px 10px rgb(154, 158, 163);
 }
 
 .login-heading {
@@ -226,6 +229,7 @@ p {
   .container {
     height: 400px;
     width: 90%;
+    margin-top: 50px;
     box-shadow: 3px 3px 10px black;
   }
 }

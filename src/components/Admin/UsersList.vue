@@ -3,19 +3,18 @@
     <AdminNavBar />
     <!-- <h1 class="text-center text-white bg-primary">Users List</h1> -->
     <div class="page">
-      <h3 class="text-center">LIST OF THE USERS :</h3>
+      <h3 class="text-center text-light">LIST OF THE USERS :</h3>
 
       <!-- <pre>{{ usersList.data.users[0] }} </pre> -->
 
       <div class="user-search d-flex justify-content-between">
-         
         <div class="totalusers btn bg-light fw-bold">
           Total Users :
           <span class="text-secondary">
             {{ usersList.data.users ? usersList.data.users.length : 0 }}</span
           >
         </div>
-       <br />
+        <br />
         <div class="searchFilter">
           <h5 class="text-center text-light fw-bold p-1">FILTER RESULT</h5>
           <form class="text-center" @submit.prevent="searchFilter">
@@ -46,19 +45,22 @@
                 {{ type.status }}
               </option>
             </select>
-            <button class="btn btn-sm btn-outline-success">search</button>
+            <button class="btn btn-sm btn-success">search</button>
           </form>
         </div>
       </div>
 
-      <div v-if='usersList.data.message == "No user found !"' class="notFound bg-primary">
-        <div class="nouser">
-         <h3>- No User Found</h3>
-
-        </div>
+      <div
+        v-if="usersList.data.message == 'No user found !'"
+        class="emptyTickets usernotFound"
+      >
+        <p class="text-center">
+          No user found !  
+        </p>
       </div>
 
-      <div v-else
+      <div
+        v-else
         class="users p-2"
         v-for="user in usersList.data.users"
         :key="user.userId"
@@ -155,12 +157,15 @@ export default {
   methods: {
     async searchFilter() {
       if (this.status != "" || this.usertype != "") {
-        var response = await usersList.listOfUsers( this.getToken, this.status, this.usertype  );
+        var response = await usersList.listOfUsers(
+          this.getToken,
+          this.status,
+          this.usertype
+        );
       }
-        this.usersList = response;
-        this.$toast.success(this.usersList.data.message);
-        console.log("search : ", response);
-      
+      this.usersList = response;
+      this.$toast.success(this.usersList.data.message);
+      console.log("search : ", response);
     },
   },
   created: async function () {
@@ -173,7 +178,7 @@ export default {
 </script>
 
 <style>
-.user-search{
+.user-search {
   height: 50px;
   margin: 30px 60px;
   border-radius: 10px;
@@ -181,7 +186,7 @@ export default {
 .searchFilter {
   width: 50%;
   height: 80px;
-  background-color: rgb(197, 197, 197);
+  background-color: rgb(35, 104, 154);
   border-radius: 3px;
   box-shadow: 2px 2px 3px black;
   /* border-bottom-right-radius: 3px; */
@@ -196,14 +201,18 @@ export default {
 }
 .page {
   margin-top: 65px;
-  background: rgb(222, 221, 221);
+  background: rgb(63, 107, 231);
+}
+
+.usernotFound{
+  background: rgb(118, 151, 240);
+
 }
 
 .totalusers {
   /* margin-left: 35px; */
   text-align: center;
   padding: 20px;
-  
 }
 
 .nouser {
@@ -246,7 +255,7 @@ export default {
   font-weight: 900;
 }
 
-.notFound{
+.notFound {
   text-align: center;
 }
 span {
@@ -257,7 +266,7 @@ span {
   font-weight: 900;
 }
 .users {
-  background: rgb(222, 221, 221);
+  background: rgb(73, 112, 240);
 }
 
 @media screen and (max-width: 768px) {

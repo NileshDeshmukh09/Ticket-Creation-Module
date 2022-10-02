@@ -1,57 +1,57 @@
 <template>
-  <div id="home">
+  <div id="home ">
     <CustomerNavBar />
-    <div class="add-ticket-form">
-      <h2 class="text-center text-white fw-bold my-3">
-        UPDATE TICKET
-      </h2>
-      <p class="text-center fw-bold">CUSTOMER</p>
+    <div class="outerDiv">
+      <div class="add-ticket-form">
+        <h2 class="text-center text-white fw-bold my-3">UPDATE TICKET</h2>
+        <p class="text-center fw-bold">CUSTOMER</p>
 
-      <form @submit.prevent="OnSubmit">
-        <div class="form-group">
-          <label for="title">Title :</label>
-          <input
-            v-model.trim="$v.title.$model"
-            type="text"
-            class="form-control fw-bold"
-            :class="{
-              'is-valid': !$v.title.$invalid,
-              'is-invalid': $v.title.$error,
-            }"
-            id="title"
-            aria-describedby="emailHelp"
-            placeholder="Title"
-          />
+        <form @submit.prevent="OnSubmit">
+          <div class="form-group">
+            <label for="title">Title :</label>
+            <input
+              v-model.trim="$v.title.$model"
+              type="text"
+              class="form-control fw-bold"
+              :class="{
+                'is-valid': !$v.title.$invalid,
+                'is-invalid': $v.title.$error,
+              }"
+              id="title"
+              aria-describedby="emailHelp"
+              placeholder="Title"
+            />
 
-          <div class="invalid-feedback">
-            <span v-if="!$v.title.required">Title is required !</span>
+            <div class="invalid-feedback">
+              <span v-if="!$v.title.required">Title is required !</span>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="description">Description : </label>
-          <textarea
-            name="description"
-            v-model.trim="$v.description.$model"
-            class="form-control fw-bold"
-            :class="{
-              'is-valid': !$v.description.$invalid,
-              'is-invalid': $v.description.$error,
-            }"
-            id="description"
-            cols="30"
-            rows="4"
-            placeholder="Describe Your Issue Here ..."
-          ></textarea>
+          <div class="form-group">
+            <label for="description">Description : </label>
+            <textarea
+              name="description"
+              v-model.trim="$v.description.$model"
+              class="form-control fw-bold"
+              :class="{
+                'is-valid': !$v.description.$invalid,
+                'is-invalid': $v.description.$error,
+              }"
+              id="description"
+              cols="30"
+              rows="4"
+              placeholder="Describe Your Issue Here ..."
+            ></textarea>
 
-          <div class="invalid-feedback">
-            <span v-if="!$v.description.required"
-              >Description is required !</span
-            >
+            <div class="invalid-feedback">
+              <span v-if="!$v.description.required"
+                >Description is required !</span
+              >
+            </div>
           </div>
-        </div>
-       
-        <button type="submit" class="btn btn-primary mt-3">Submit</button>
-      </form>
+
+          <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -70,7 +70,7 @@ export default {
 
   data() {
     return {
-      ticketId : this.$route.params.ticketId,
+      ticketId: this.$route.params.ticketId,
       title: "",
       description: "",
       submitStatus: null,
@@ -108,7 +108,7 @@ export default {
             this.ticketId
           );
         };
-        
+
         if (helper()) {
           this.$toast.success("Tickets updated Successfully !");
         } else {
@@ -149,8 +149,13 @@ label {
   margin-top: 20px;
 }
 
-input::placeholder ,
-textarea::placeholder  {
+.outerDiv{
+  height: 100vh;
+  background-color: black;
+}
+
+input::placeholder,
+textarea::placeholder {
   font-weight: 900;
 }
 
@@ -163,7 +168,7 @@ p {
 }
 
 @media screen and (max-width: 768px) {
-  .add-ticket-form{
+  .add-ticket-form {
     width: 70%;
     margin-top: 100px;
   }

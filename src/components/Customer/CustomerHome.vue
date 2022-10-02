@@ -1,55 +1,200 @@
 <template>
-  <div class="customerhome">
+  <div class="customerhome" >
     <CustomerNavBar />
-    <TicketsHome :ticketsList="ticketsList" />
+
+ 
+      <div>
+        <div class="CustomerDiv">
+          <div class="Home">
+            <p class="small-desc text-light">
+              {{ userName.toUpperCase() }} , Tickets created by you will show
+              Here
+            </p>
+          </div>
+          <!-- <pre>{{ ticketsList }}</pre> -->
+          <div class="topFilters d-flex justify-content-between">
+            <div class="ticketsCount text-center">
+              <p>
+                <span>Tickets :</span>
+                {{
+                  ticketsList.data.tickets ? ticketsList.data.tickets.length : 0
+                }}
+              </p>
+
+              <br />
+            </div>
+            
+            
+            <div class="searchFilter">
+              <h5 class="filterTitle text-center text-light fw-bold p-1">FILTER RESULT</h5>
+              <form class="text-center" @submit.prevent="searchFilter">
+                <select name="" class="searchUserType fw-bold" v-model="status">
+                  <option value="" class="fw-bold bg-dark text-light">
+                    SELECT STATUS
+                  </option>
+                  <option
+                    v-for="currStatus in ticketStatusArr"
+                    class="fw-bold"
+                    :key="currStatus.id"
+                    :value="currStatus.status"
+                  >
+                    {{ currStatus.status }}
+                  </option>
+                </select>
+                <button class="btn btn-sm btn-success">search</button>
+              </form>
+            </div>
+          </div>
+
+          <div v-if='ticketsList.data.message == "No Tickets Found !"' class="emptyTickets">
+                <p class="text-center">Raise a complain of your Issue !
+                  <router-link class="nav-link active text-primary" aria-current="page" to="/customers/tickets/add" >Raise-an-Issue</router-link>
+                </p>
+          </div>
+          <div
+            class="ticketsList"
+            v-for="ticket in ticketsList.data.tickets"
+            :key="ticket.id"
+          >
+            <div class="jumbotron jumbotron-fluid OneTicket">
+              <div class="container">
+                <div class="title d-flex justify-content-start">
+                  <span> Title :</span>
+                  <p class="mx-2 ticketTitle">
+                    {{ ticket.title ? ticket.title : "" }}
+                  </p>
+                </div>
+
+                <div class="description d-flex">
+                  <span>Description : </span>
+                  <p class="mx-3 title-description fw-bold">
+                    {{ ticket.description ? ticket.description : "" }}
+                  </p>
+                </div>
+
+                <div class="statusAndEnginner d-flex justify-content-between">
+                  <div class="status d-flex">
+                    <span>Status : </span>
+                    <p class="mx-2 text-success fw-bold">
+                      {{ ticket.status ? ticket.status : "" }}
+                    </p>
+                  </div>
+
+                  <h5 class="text-secondary fw-bold">
+                    <span class="text-dark">Engineer : </span>
+                    {{ ticket.assignee ? ticket.assignee : "" }}
+                  </h5>
+                </div>
+
+                <div class="icons">
+                  <button class="btn btn-outline-primary mt-3">
+                    <router-link
+                      :to="`/customers/tickets/${ticket.id}`"
+                      class="text-decoration-none updateTicket"
+                      >update</router-link
+                    >
+                  </button>
+                </div>
+
+                <div class="dateAndTime d-flex justify-content-end">
+                  <p class="fw-bold">
+                    CreatedAt :
+
+                    <span class="date mx-2 text-secondary">
+                      {{ ticket.createdAt | formatDate }}</span
+                    >
+                    <!-- <span class="time">{{ ticket.updatedAt | formatDate}}</span> -->
+                  </p>
+                </div>
+              </div>
+            </div>
+            <br />
+          </div>
+        </div>
+      </div>
+   
   </div>
+
+
+    
+    <!-- <TicketsHome :ticketsList="ticketsList"  :changeStatus="updateStatus($event)"/> -->
+    
+
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import CustomerNavBar from "./CustomerNavBar.vue";
-import TicketsHome from "./TicketsHome.vue";
-import { getAllTickets } from "@/services/customerTickets";
+// import TicketsHome from "./TicketsHome.vue";
+// import { getAllTickets } from "@/services/customerTickets";
+import { ticketsMethod } from "@/services/Tickets";
 
 export default {
   name: "CustomerHome",
   data() {
     return {
       ticketsList: [],
+      status: "",
+      ticketStatusArr: [
+        { id: 1, status: "OPEN" },
+        { id: 2, status: "CLOSED" },
+        { id: 3, status: "IN_PROGRESS" },
+      ],
     };
   },
   computed: {
-    ...mapGetters(["getToken", "userMessage" , "userName"]),
+    ...mapGetters(["getToken", "userMessage", "userName"]),
   },
   components: {
     CustomerNavBar,
-    TicketsHome,
+    // TicketsHome,
   },
   created: async function () {
-    let response = await getAllTickets.getTickets(this.getToken);
+    let response = await ticketsMethod.getAllTickets(this.getToken);
+    // let response = await getAllTickets.getTickets(this.getToken);
     this.ticketsList = response;
     this.$toast.success(this.ticketsList.data.message);
     console.log(response);
+  },
+  methods: {
+    async searchFilter() {
+      console.log("status : ", this.status);
+      if (this.status != "") {
+        let response = await ticketsMethod.getAllTickets(
+          this.getToken,
+          this.status
+        );
+        //  let response = await getAllTickets.getTickets(this.getToken , this.status);
+        this.ticketsList = response;
+        this.$toast.success(this.ticketsList.data.message);
+        console.log("success : ", response);
+      }
+    },
   },
 };
 </script>
 
 <style>
-.customerhome{
+.customerhome {
   background: rgba(19, 168, 116, 0.954);
+}
+.pageHeight{
+  height: 100vh;
 }
 .CustomerDiv {
   margin-top: 60px;
-  
 }
-.small-desc{
+.small-desc {
   font-size: 20px;
   font-weight: 700;
   margin: 20px 60px;
-
 }
 .OneTicket {
   padding: 10px;
+}
+
+.topFilters {
+  margin: 0px 50px;
 }
 
 .container {
@@ -65,7 +210,7 @@ export default {
   width: 150px;
   height: 50px;
   padding: 20px;
-  margin: 20px 60px;
+  margin: 20px;
   background: rgb(221, 221, 221);
   border-radius: 3px;
   box-shadow: 2px 2px 5px black;
@@ -74,6 +219,21 @@ export default {
   font-weight: 900;
   font-size: 19px;
   color: black;
+}
+
+.emptyTickets{
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px black;
+  font-weight: 900;
+  left: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 150px;
+  background: #66F3B5  ;
+  margin: 20px;
 }
 
 .ticketsCount p {
@@ -116,6 +276,20 @@ export default {
   .title-description {
     font-size: 15px;
     justify-content: space-between;
+  }
+
+  .emptyTickets{
+    width: 200px;
+    left: 25%;
+    margin-bottom: 20px ;
+  }
+
+  .filterTitle{
+    font-size: 15px;
+  }
+
+  .searchUserType{
+    width: 100px;
   }
 }
 </style>

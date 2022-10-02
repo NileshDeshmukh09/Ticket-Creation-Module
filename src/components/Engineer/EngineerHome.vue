@@ -4,20 +4,52 @@
     <!-- <h1>Engineer Home !</h1> -->
     <!-- <h1 class="text-center text-white bg-primary">Users List</h1> -->
 
+    <div class="engineer">
+      <h1 class="text-center text-light ">Assigned Tickets </h1>
 
-     <div class="engineer">
-      <h1 class="text-center" >LIST OF THE TICKETS :</h1>
-      
       <!-- <pre>{{ ticketsList }}</pre> -->
-      <div class="totalTIckets btn bg-light fw-bold">
-        Total Tickets :
-        <span class="text-secondary">
-          {{ ticketsList.data.tickets ?  ticketsList.data.tickets.length : 0 }}</span
-        >
-      </div>
+      <div class="filters d-flex justify-content-between"> 
+        <div class="totalTIckets btn bg-light fw-bold">
+          Total Tickets :
+          <span class="text-secondary">
+            {{
+              ticketsList.data.tickets ? ticketsList.data.tickets.length : 0
+            }}</span
+          >
+        </div>
+        <br />
+        <div class="searchFilter">
+          <h5 class="text-center text-light fw-bold p-1">FILTER RESULT</h5>
+          <form class="text-center" @submit.prevent="searchTickets">
+            <select
+              name=""
+              class="searchUserType fw-bold"
+              v-model="currTicketStatus"
+            >
+              <option value="" class="fw-bold bg-dark text-light">
+               SELECT STATUS
+              </option>
+              <option
+                v-for="currStatus in ticketStatus"
+                class="fw-bold"
+                :key="currStatus.id"
+                :value="currStatus.status"
+              >
+                {{ currStatus.status }}
+              </option>
+            </select>
+            <button class="btn btn-sm btn-success">search</button>
+          </form>
+        </div>
+       </div>
 
-       <div
-        class="users p-2"
+        <div v-if='ticketsList.data.message == "No Tickets Found !"' class="emptyTickets">
+                <p class="text-center">No Tickets Found
+                </p>
+          </div>
+
+      <div v-else
+        class="listOfTickets p-2"
         v-for="ticket in ticketsList.data.tickets"
         :key="ticket.id"
       >
@@ -39,22 +71,22 @@
 
           <div class="usersValue d-flex justify-content-between">
             <p class="userId text-secondary">
-              {{  ticket.description ? ticket.description : ""  }}
+              {{ ticket.description ? ticket.description : "" }}
             </p>
             <p class="email text-secondary">
               <span class="text-dark"> AssignedTo : </span>
-              {{ ticket.assignee ? ticket.assignee : '' }}
+              {{ ticket.assignee ? ticket.assignee : "" }}
             </p>
           </div>
 
           <div class="usersTypes d-flex justify-content-between">
             <p class="userType text-secondary" v-if="ticket.reporter">
               <span class="text-dark fw-bold"> IssuedBy : </span>
-              {{  ticket.reporter ? ticket.reporter : '' }}
+              {{ ticket.reporter ? ticket.reporter : "" }}
             </p>
-            <p class="userType" v-else >
+            <p class="userType" v-else>
               <span> Ticket-ID : </span>
-              {{  ticket.id ? ticket.id : '' }}
+              {{ ticket.id ? ticket.id : "" }}
             </p>
             <p
               class="userStatus fw-bolder text-success"
@@ -63,7 +95,7 @@
               <span class="text-dark fw-bold">STATUS : </span>
 
               <button class="btn btn-success fw-bold">
-                {{ ticket.status ? ticket.status  : ''}}
+                {{ ticket.status ? ticket.status : "" }}
               </button>
             </p>
             <p
@@ -73,7 +105,7 @@
               <span class="text-dark fw-bold">STATUS : </span>
 
               <button class="btn btn-danger fw-bold">
-                {{ ticket.status ? ticket.status : '' }}
+                {{ ticket.status ? ticket.status : "" }}
               </button>
             </p>
             <p
@@ -83,7 +115,7 @@
               <span class="text-dark fw-bold">STATUS : </span>
 
               <button class="btn btn-danger fw-bold">
-                {{ ticket.status ? ticket.status :'' }}
+                {{ ticket.status ? ticket.status : "" }}
               </button>
             </p>
             <p
@@ -92,7 +124,9 @@
             >
               <span class="text-dark fw-bold">STATUS : </span>
 
-              <button class="btn btn-info fw-bold">{{ ticket.status ? ticket.status : '' }}</button>
+              <button class="btn btn-info fw-bold">
+                {{ ticket.status ? ticket.status : "" }}
+              </button>
             </p>
 
             <p
@@ -100,7 +134,7 @@
               v-else-if="user.userStatus == 'PENDING'"
             >
               <span class="text-dark">STATUS : </span>
-              {{ ticket.status ? ticket.status : '' }}
+              {{ ticket.status ? ticket.status : "" }}
             </p>
           </div>
 
@@ -109,12 +143,8 @@
           </div>
         </div>
         <br />
-      </div> 
-    </div> 
-
-      <!-- <EngineerTickets  :ticketsList = 'ticketsList' /> -->
-
-
+      </div>
+    </div>
   </div>
 </template>
 
@@ -122,17 +152,21 @@
 import { ticketsMethod } from "@/services/Tickets";
 import { mapGetters } from "vuex";
 import EngineerNavBar from "./EngineerNavBar.vue";
-// import EngineerTickets from './EngineerTickets.vue'
+
 export default {
   name: "EngineerHome",
   components: {
     EngineerNavBar,
-    // EngineerTickets
-
   },
   data() {
     return {
       ticketsList: [],
+      currTicketStatus: "",
+      ticketStatus: [
+        { id: 1, status: "OPEN" },
+        { id: 2, status: "CLOSED" },
+        { id: 3, status: "IN_PROGRESS" },
+      ],
     };
   },
   computed: {
@@ -142,19 +176,49 @@ export default {
   created: async function () {
     let response = await ticketsMethod.getAllTickets(this.getToken);
     this.ticketsList = response;
-    console.log( this.ticketsList );
+    console.log(this.ticketsList);
     this.$toast.success(this.ticketsList.data.message);
     console.log(response);
   },
 
- 
+  methods: {
+    async searchTickets() {
+      if (this.currTicketStatus != "") {
+        let response = await ticketsMethod.getAllTickets(this.getToken , this.currTicketStatus);
+        this.ticketsList = response;
+        console.log(this.ticketsList);
+        this.$toast.success(this.ticketsList.data.message);
+        console.log(response);
+      }
+    },
+  },
 };
 </script>
 
 <style>
-.engineer {
-  margin-top: 100px;
+.filters{
+  margin: 20px 50px;
 }
+.engineer {
+  margin-top: 55px;
+  background: #0465f5  ;
+}
+/* 
+.ticketnotFound{
+  width: 400px;
+  height: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+} */
+
+.userslist{
+  background: #7BBCF3  ;
+}
+
+
+
+
 
 @media screen and (max-width: 768px) {
   .usersValue {
@@ -173,8 +237,8 @@ export default {
   }
 
   .container {
-    height: 330px;
-    width: 90%;
+    height: 250px;
+    width: 80%;
   }
 
   .userId {

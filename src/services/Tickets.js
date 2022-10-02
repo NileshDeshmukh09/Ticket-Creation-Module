@@ -56,7 +56,7 @@ export const ticketsMethod = {
         }
     },
 
-    getAllTickets : async( accessToken  ) => {
+    getAllTickets : async( accessToken , ticketstatus ) => {
 
         const req = {
             method: 'GET',
@@ -65,6 +65,9 @@ export const ticketsMethod = {
                 'Content-Type': 'application/json',
                 'x-access-token': accessToken,
             },
+            params:{
+                status : ticketstatus
+            }
         }
 
         try {
