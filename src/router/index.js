@@ -6,7 +6,6 @@ import CustomerHome from '@/components/Customer/CustomerHome';
 import AddNewTicket from '@/components/Customer/AddNewTicket';
 import UpdateTicket from '@/components/Customer/UpdateTicket';
 import EngineerSignup from '@/components/Engineer/EngineerSignup';
-// import AdminHome from '@/components/Admin/AdminHome';
 import UsersList from '@/components/Admin/UsersList';
 import ViewUser from '@/components/Admin/ViewUser';
 import EditUser from '@/components/Admin/EditUser';
@@ -35,7 +34,7 @@ const router = new Router({
         component: LoginPage,
       },
 
-      /** Customer */
+      /** Customer Routes */
 
       {
         name : 'CustomerHome',
@@ -53,7 +52,7 @@ const router = new Router({
         component : UpdateTicket,
       },
 
-      /** Engineer  */
+      /** Engineer Routes  */
 
       {
         name : 'EngineerSignup',
@@ -61,7 +60,7 @@ const router = new Router({
         component : EngineerSignup,
       },
 
-      /** ADMIN */
+      /** ADMIN Routes */
 
       {
         name : "UsersList" , 
@@ -92,11 +91,7 @@ const router = new Router({
         name : "EngUpdateTicket",
         path : "/engineer/tickets/:ticketId",
         component : EngUpdateTicket
-      },
-
-
-     
-      
+      }, 
       
     ],
   });

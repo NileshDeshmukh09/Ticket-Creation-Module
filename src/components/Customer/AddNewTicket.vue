@@ -1,6 +1,7 @@
 <template>
   <div id="home">
     <CustomerNavBar />
+    <!-- Form for Raising the New Complains  -->
     <div class="add-ticket-form ">
       <h2 class="text-center text-white fw-bold my-3">
         RAISE THE ISSUE 
@@ -11,6 +12,8 @@
 
       <form @submit.prevent="OnSubmit">
         <div class="form-group">
+
+          <!-- Title  -->
           <label for="title">Title :</label>
           <input
             v-model.trim="$v.title.$model"
@@ -24,12 +27,15 @@
             aria-describedby="emailHelp"
             placeholder="Title"
           />
-
+          <!-- validate the title using vuelidate  -->
           <div class="invalid-feedback">
             <span v-if="!$v.title.required">Title is required !</span>
           </div>
         </div>
+
+        <!-- Description -->
         <div class="form-group">
+          
           <label for="description">Description : </label>
           <textarea
             name="description"
@@ -78,6 +84,7 @@ export default {
     };
   },
 
+  // validating the fields 
   validations: {
     title: {
       required,
@@ -88,6 +95,7 @@ export default {
     },
   },
 
+  // Vuex store get data
   computed: {
     ...mapGetters(["getToken"]),
   },
@@ -101,7 +109,8 @@ export default {
         };
 
         console.log("data : ", data);
-
+        
+        // Getting Response from the backend 
         const helper = async () => {
           this.ticketsCreated = await ticketsMethod.createTicket(
             data,

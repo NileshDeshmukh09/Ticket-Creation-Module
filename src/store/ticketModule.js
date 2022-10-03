@@ -71,14 +71,10 @@ const actions = {
                 commit('setEmail', email);
                 commit('setUserType', userType);
                 commit('setUserStatus', userStatus);
-
-                console.log("API Checked !")
-                console.log("ResponseStore : ", response);
+                
                 return response;
 
             } else {
-                console.log("API Checked !")
-                console.log("ResponseStore : ", response);
                 return response;
             }
         } catch (error) {

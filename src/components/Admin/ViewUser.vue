@@ -7,7 +7,7 @@
       <div class="card text-center">
         <div class="card-header fw-bold"><h2> Profile</h2></div>
         <div class="card-body">
-      
+            <!-- Show details of the users -->
           <ul class="list-group list-group-flush">
             <li class="list-group-item" > <span >Name :</span> <b>{{ userDetails.data.user[0].name }}</b></li>
             <li class="list-group-item fw-100"><span>UserID :</span>{{ userDetails.data.user[0].userId }}</li>

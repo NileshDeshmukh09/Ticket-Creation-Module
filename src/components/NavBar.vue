@@ -3,6 +3,7 @@
     <div id="nav-bar">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
+          <!-- Home page Router -->
           <router-link class="navbar-brand nav-menu" to="/">Home</router-link>
           <button
             class="navbar-toggler"
@@ -17,6 +18,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+               <!-- Login page Router -->
               <li class="nav-item nav-menu">
                 <router-link
                   class="nav-link nav-menu"
@@ -25,9 +27,11 @@
                   >Login</router-link
                 >
               </li>
+               <!-- Signup page Router -->
               <li class="nav-item nav-menu">
                 <router-link class="nav-link" to="/signup">Signup</router-link>
               </li>
+               <!-- Engineer-signup page Router -->
               <li class="nav-item nav-menu">
                 <router-link class="nav-link" to="/engineer/signup"
                   >Engineer-Signup</router-link
@@ -47,6 +51,7 @@ export default {
  
 };
 </script>
+
 
 <style>
 .nav-menu {

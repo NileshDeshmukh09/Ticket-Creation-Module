@@ -1,13 +1,15 @@
 <template>
   <div id="userspage">
     <AdminNavBar />
-    <!-- <h1 class="text-center text-white bg-primary">Users List</h1> -->
+    
     <div class="page">
-      <h3 class="text-center text-light">LIST OF THE USERS :</h3>
+      <h3 class="text-center text-light">Authenticated Users List </h3>
 
       <!-- <pre>{{ usersList.data.users[0] }} </pre> -->
 
+
       <div class="user-search d-flex justify-content-between">
+        <!-- Total number of lists  -->
         <div class="totalusers btn bg-light fw-bold">
           Total Users :
           <span class="text-secondary">
@@ -15,9 +17,11 @@
           >
         </div>
         <br />
+        <!-- Apply filer on status and userType  -->
         <div class="searchFilter">
           <h5 class="text-center text-light fw-bold p-1">FILTER RESULT</h5>
           <form class="text-center" @submit.prevent="searchFilter">
+            <!-- Added filter on status  -->
             <select name="" class="searchUserType fw-bold" v-model="status">
               <option value="" class="fw-bold bg-dark text-light">
                 -- select status --
@@ -31,7 +35,7 @@
                 {{ currStatus.status }}
               </option>
             </select>
-
+            <!-- Added filter on user type -->
             <select name="" class="searchUserType fw-bold" v-model="usertype">
               <option value="" class="fw-bold bg-dark text-light">
                 -- user type --
@@ -50,6 +54,7 @@
         </div>
       </div>
 
+      <!-- show if the list  has no user  -->
       <div
         v-if="usersList.data.message == 'No user found !'"
         class="emptyTickets usernotFound"
@@ -67,9 +72,12 @@
       >
         <div class="userslist container">
           <div class="username divRow d-flex justify-content-between">
+
+            <!-- User name -->
             <h1 class="name">{{ user.name ? user.name : "" }}</h1>
             <div class="buttons d-flex justify-content-between">
               <button class="delete btn btn-sm fw-bold">
+                <!-- view user  -->
                 <router-link
                   :to="`/admin/users/${user.userId}`"
                   class="text-decoration-none"
@@ -77,6 +85,7 @@
                 >
               </button>
               <button class="edit btn btn-sm fw-bold">
+                <!-- Edit user  -->
                 <router-link
                   :to="`/admin/users/${user.userId}/edit`"
                   class="text-decoration-none"
@@ -85,6 +94,8 @@
               </button>
             </div>
           </div>
+
+          <!-- user Type  -->
           <div class="usersValue divRow d-flex justify-content-between">
             <p class="userId text-secondary">
               {{ user.userType ? user.userType : "" }}
@@ -94,6 +105,8 @@
               >{{ user.email ? user.email : "" }}
             </p>
           </div>
+
+          <!-- User ID -->
           <div class="usersTypes divRow d-flex">
             <p class="userType col-md-6">
               <span> USER-ID : </span>{{ user.userId ? user.userId : "" }}
@@ -156,6 +169,7 @@ export default {
   },
   methods: {
     async searchFilter() {
+      // Added filters and search the results 
       if (this.status != "" || this.usertype != "") {
         var response = await usersList.listOfUsers(
           this.getToken,
@@ -169,6 +183,7 @@ export default {
     },
   },
   created: async function () {
+    // Fetching the list of the users
     var response = await usersList.listOfUsers(this.getToken);
     this.usersList = response;
     this.$toast.success(this.usersList.data.message);
@@ -226,7 +241,6 @@ export default {
 
 .userslist {
   height: 230px;
-  /* background: rgb(253, 252, 252); */
   background: rgb(255, 255, 255);
   box-shadow: 2px 2px 2px 2px rgb(203, 200, 200);
   border-radius: 4px;
@@ -278,7 +292,6 @@ span {
   .usersTypes {
     display: flex;
     flex-wrap: wrap;
-    /* flex-direction: column; */
     justify-content: space-between;
   }
 

@@ -3,6 +3,7 @@ import Config from '@/config';
 
 export const usersList = {
 
+    // List of User's with filter on status and usertype 
     listOfUsers: async ( accessToken , status , usertype ) => {
 
         const req = {
@@ -20,7 +21,6 @@ export const usersList = {
 
         try {
            const response =  await axios(req);
-           console.log( " Req params : ", req.params);
            return response;
            
         } catch (error) {
@@ -30,6 +30,7 @@ export const usersList = {
     },
 
 
+    //Get the user based on userID
     getUserByID : async( accessToken , userId) => {
         
         const req = {
@@ -51,6 +52,7 @@ export const usersList = {
          }
     },
 
+    //Update the user Based on user ID
     updateUserByID : async ( accessToken , userId , updateData ) => {
         const req = {
             method: 'put',

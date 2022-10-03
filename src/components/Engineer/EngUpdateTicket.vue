@@ -5,6 +5,8 @@
     <div class="mainDiv">
       <div class="editUser">
         <h3 class="text-center fw-bold">EDIT TICKET | ENGINEER</h3>
+
+        <!-- Form to update the tickets  -->
         <form @submit.prevent="updateTicket">
           <div class="row">
             <div class="title col-md-6">
@@ -20,6 +22,7 @@
             <div class="col-md-6"></div>
           </div>
 
+          <!-- Enggineer -->
           <div class="row">
             <div class="col-md-6">
               <label class="label" for="engineer">ENGINEER</label>
@@ -39,13 +42,7 @@
               <option value="select" class="fw-bold">-- Select Status --</option>
                <option v-for="currStatus in ticketStatus" class="fw-bold" :key="currStatus.id" :value="currStatus.status">{{ currStatus.status }}</option>
             </select>
-              <!-- <input
-                type="text"
-                v-model="ticketsDetails.Ticket.status"
-                id="status"
-                class="inputValue form-control fw-bold"
-                placeholder="Enter status"
-              /> -->
+             
             </div>
           </div>
 
@@ -106,13 +103,13 @@ export default {
     EngineerNavBar,
   },
   created: async function () {
+    // get the tickets by ID
     try {
       let response = await ticketsMethod.getTicketByID(
         this.getToken,
         this.ticketId
       );
       this.ticketsDetails = response.data;
-      console.log( this.ticketsDetails);
 
       if (response) {
         this.$toast.success(response.data.message);
@@ -124,8 +121,8 @@ export default {
   },
 
   methods: {
+    // update the tickets 
     updateTicket: async function () {
-      console.log(this.ticketId);
       let response = await ticketsMethod.updateTicketByID(
         this.ticketsDetails.Ticket,
         this.getToken,
@@ -156,7 +153,7 @@ export default {
 .label {
   font-size: 20px;
   margin-bottom: 5px;
-  /* margin-top: 10px; */
+
 }
 
 .inputValue,

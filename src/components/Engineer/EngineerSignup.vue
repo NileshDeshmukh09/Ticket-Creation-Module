@@ -273,7 +273,7 @@ span {
 .container {
   background: rgb(223, 223, 223);
   width: 50%;
-  margin-top: 50px;
+  margin-top: 60px;
   border: 1px solid rgb(213, 42, 42);
   border-radius: 10px;
 }
@@ -311,7 +311,7 @@ input::placeholder , p {
   .container {
     height: 700px;
     width: 90%;
-    margin-top: 100px;
+    margin-top: 60px;
   }
 
   

@@ -6,7 +6,10 @@
         <h2 class="text-center text-white fw-bold my-3">UPDATE TICKET</h2>
         <p class="text-center fw-bold">CUSTOMER</p>
 
+        <!-- update tickets component  -->
         <form @submit.prevent="OnSubmit">
+
+          <!-- Title of the Ticket -->
           <div class="form-group">
             <label for="title">Title :</label>
             <input
@@ -22,10 +25,13 @@
               placeholder="Title"
             />
 
+            <!-- Validate the ticket using vuelidate -->
             <div class="invalid-feedback">
               <span v-if="!$v.title.required">Title is required !</span>
             </div>
           </div>
+
+          <!-- Description -->
           <div class="form-group">
             <label for="description">Description : </label>
             <textarea
@@ -41,7 +47,7 @@
               rows="4"
               placeholder="Describe Your Issue Here ..."
             ></textarea>
-
+            <!-- Validate description using vuelidte -->
             <div class="invalid-feedback">
               <span v-if="!$v.description.required"
                 >Description is required !</span
@@ -70,13 +76,15 @@ export default {
 
   data() {
     return {
+      // Get the ticketID from the Routes 
       ticketId: this.$route.params.ticketId,
       title: "",
       description: "",
       submitStatus: null,
     };
   },
-
+  
+  // Validating the fields 
   validations: {
     title: {
       required,
@@ -87,6 +95,7 @@ export default {
     },
   },
 
+  // Get the token using MapGetters
   computed: {
     ...mapGetters(["getToken"]),
   },
@@ -101,6 +110,7 @@ export default {
 
         console.log("data : ", data);
 
+        //  pass  the data to the backend 
         const helper = async () => {
           this.ticketsCreated = await ticketsMethod.updateTicketByID(
             data,
@@ -132,8 +142,9 @@ export default {
   },
 };
 </script >
-
+// Added style 
 <style scoped>
+
 .add-ticket-form {
   border: 1px solid rgb(26, 255, 164);
   background: rgba(26, 164, 98, 0.712);
@@ -151,7 +162,7 @@ label {
 
 .outerDiv{
   height: 100vh;
-  background-color: black;
+
 }
 
 input::placeholder,

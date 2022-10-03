@@ -34,7 +34,7 @@ export const ticketsMethod = {
         }
     } , 
 
-
+    // update the ticekets 
     updateTicketByID : async ( updateData , accessToken , ticketID )=>{
         const req = {
             method: 'PUT',
@@ -56,6 +56,7 @@ export const ticketsMethod = {
         }
     },
 
+    // Get alll the tickets 
     getAllTickets : async( accessToken , ticketstatus ) => {
 
         const req = {
@@ -79,7 +80,8 @@ export const ticketsMethod = {
              return error;
          }
     },
-
+    
+    // Get the tickets by ID
     getTicketByID : async( accessToken , ticketId) => {
         
         const req = {

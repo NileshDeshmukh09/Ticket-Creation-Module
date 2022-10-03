@@ -4,7 +4,10 @@
     <div class="container logindiv">
       <h1 class="text-center text-primary">LOGIN</h1>
 
+      <!-- Login form  -->
       <form @submit.prevent="onLogin">
+
+        <!-- User ID -->
         <div class="form-group m-3">
           <label for="userId">UserID :</label>
           <input
@@ -24,6 +27,7 @@
           </div>
         </div>
 
+        <!-- Password -->
         <div class="form-group m-3">
           <label for="password">Password :</label>
           <input
@@ -76,6 +80,7 @@ export default {
     };
   },
 
+  // Validations for the fields 
   validations: {
     userId: {
       required,
@@ -87,6 +92,7 @@ export default {
     },
   },
 
+  // Receiving data from the Vuex Store 
   computed: {
     ...mapGetters(["userMessage"]),
   },
@@ -101,6 +107,7 @@ export default {
       };
       console.log(data);
 
+        // Toast Validations for Field's not provided
       if (!this.userId) {
         this.$toast.error("UserID Not Provided !");
       } else if (!this.password) {
@@ -113,6 +120,7 @@ export default {
 
     
       if (response.data.status == 200) {
+        
         /** if the user is CUSTOMER */
         if (response.data.user.userType === "CUSTOMER") {
           this.$toast.success(this.userMessage);
@@ -186,6 +194,7 @@ h1 {
   width: 50%;
   border: 1px solid rgb(21, 42, 87);
   border-radius: 10px;
+  margin-top: 50px;
   box-shadow: 3px 2px 10px rgb(154, 158, 163);
 }
 

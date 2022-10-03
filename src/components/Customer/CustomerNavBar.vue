@@ -3,6 +3,7 @@
     <div id="nav-bar">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
+          <!-- Get the user name from the vuex store  -->
           <router-link class="navbar-brand nav-menu" to="/"
             >Welcome
             <span class="text-primary">{{ userName }} </span> !</router-link

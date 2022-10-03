@@ -5,8 +5,12 @@
     <div class="mainDiv">
     <div class="editUser">
     <h3 class="text-center fw-bold">Edit user</h3>
+
+    <!-- Form for updating the user Details  -->
       <form @submit.prevent="updateUser">
         <div class="row">
+
+          <!-- Title -->
           <div class="name col-md-6">
             <label class="label" for="name">NAME</label>
             <input
@@ -22,6 +26,7 @@
           </div>
         </div>
 
+        <!-- UserID and Email -->
         <div class="row">
           <div class="userId col-md-6">
            
@@ -47,7 +52,7 @@
             />
           </div>
         </div>
-
+        <!-- usertype and user status  -->
         <div class="row">
           <div class="userType col-md-6">
             <label class="label" for="userType">USER TYPE</label>
@@ -96,6 +101,7 @@ export default {
   },
   data() {
     return {
+      
       userId: this.$route.params.userId,
       
      
@@ -110,11 +116,12 @@ export default {
   },
   created: async function () {
     try {
-     
+    //  paass the user ID to the backend
       let response = await usersList.getUserByID(this.getToken, this.userId);
       this.userDetails = response.data;
 
       if (response) {
+        // Success message for the Correct Request 
         this.$toast.success(response.data.message);
       }
     } catch (error) {
@@ -124,7 +131,7 @@ export default {
   },
   methods: {
     updateUser: async function () {
-       console.log(this.userId)
+      //  update the  user Details 
       let response = await usersList.updateUserByID(
         this.getToken,
         this.userId,
@@ -142,6 +149,7 @@ export default {
 </script>
 
 <style>
+/* CSS Styles  */
  .editUser {
   width: 80%;
   margin: 20px auto;

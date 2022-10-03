@@ -13,6 +13,8 @@
           </div>
           <!-- <pre>{{ ticketsList }}</pre> -->
           <div class="topFilters d-flex justify-content-between">
+
+            <!--  Counts the Number of tickets created  -->
             <div class="ticketsCount text-center">
               <p>
                 <span>Tickets :</span>
@@ -24,14 +26,16 @@
               <br />
             </div>
             
-            
+            <!-- Added Filters on the Status of the Tickets created by CUstomer -->
             <div class="searchFilter">
+
               <h5 class="filterTitle text-center text-light fw-bold p-1">FILTER RESULT</h5>
               <form class="text-center" @submit.prevent="searchFilter">
                 <select name="" class="searchUserType fw-bold" v-model="status">
                   <option value="" class="fw-bold bg-dark text-light">
                     SELECT STATUS
                   </option>
+                  <!-- get  the status of the tickets -->
                   <option
                     v-for="currStatus in ticketStatusArr"
                     class="fw-bold"
@@ -46,11 +50,14 @@
             </div>
           </div>
 
+          <!-- raise a complains if the tickets Counts  is zero -->
           <div v-if='ticketsList.data.message == "No Tickets Found !"' class="emptyTickets">
                 <p class="text-center">Raise a complain of your Issue !
                   <router-link class="nav-link active text-primary" aria-current="page" to="/customers/tickets/add" >Raise-an-Issue</router-link>
                 </p>
           </div>
+
+          <!-- iterate over the list of the tickets  -->
           <div
             class="ticketsList"
             v-for="ticket in ticketsList.data.tickets"
@@ -58,6 +65,8 @@
           >
             <div class="jumbotron jumbotron-fluid OneTicket">
               <div class="container">
+
+                <!-- Title  -->
                 <div class="title d-flex justify-content-start">
                   <span> Title :</span>
                   <p class="mx-2 ticketTitle">
@@ -65,6 +74,7 @@
                   </p>
                 </div>
 
+                <!-- Description -->
                 <div class="description d-flex">
                   <span>Description : </span>
                   <p class="mx-3 title-description fw-bold">
@@ -72,6 +82,7 @@
                   </p>
                 </div>
 
+                <!-- Row  for status and Engineer -->
                 <div class="statusAndEnginner d-flex justify-content-between">
                   <div class="status d-flex">
                     <span>Status : </span>
@@ -85,7 +96,8 @@
                     {{ ticket.assignee ? ticket.assignee : "" }}
                   </h5>
                 </div>
-
+                
+                <!-- Update button  -->
                 <div class="icons">
                   <button class="btn btn-outline-primary mt-3">
                     <router-link
@@ -96,6 +108,7 @@
                   </button>
                 </div>
 
+                <!-- shows the time at which the ticket is created -->
                 <div class="dateAndTime d-flex justify-content-end">
                   <p class="fw-bold">
                     CreatedAt :
@@ -103,7 +116,7 @@
                     <span class="date mx-2 text-secondary">
                       {{ ticket.createdAt | formatDate }}</span
                     >
-                    <!-- <span class="time">{{ ticket.updatedAt | formatDate}}</span> -->
+                    
                   </p>
                 </div>
               </div>
@@ -117,7 +130,6 @@
 
 
     
-    <!-- <TicketsHome :ticketsList="ticketsList"  :changeStatus="updateStatus($event)"/> -->
     
 
 </template>
@@ -125,12 +137,11 @@
 <script>
 import { mapGetters } from "vuex";
 import CustomerNavBar from "./CustomerNavBar.vue";
-// import TicketsHome from "./TicketsHome.vue";
-// import { getAllTickets } from "@/services/customerTickets";
 import { ticketsMethod } from "@/services/Tickets";
 
 export default {
   name: "CustomerHome",
+  // Get the data from v-model
   data() {
     return {
       ticketsList: [],
@@ -142,32 +153,34 @@ export default {
       ],
     };
   },
+
+  // Vuex store 
   computed: {
     ...mapGetters(["getToken", "userMessage", "userName"]),
   },
   components: {
     CustomerNavBar,
-    // TicketsHome,
+
   },
+
+
   created: async function () {
     let response = await ticketsMethod.getAllTickets(this.getToken);
-    // let response = await getAllTickets.getTickets(this.getToken);
+    // Store the response in the ticketlist array
     this.ticketsList = response;
     this.$toast.success(this.ticketsList.data.message);
     console.log(response);
   },
   methods: {
     async searchFilter() {
-      console.log("status : ", this.status);
       if (this.status != "") {
         let response = await ticketsMethod.getAllTickets(
           this.getToken,
           this.status
         );
-        //  let response = await getAllTickets.getTickets(this.getToken , this.status);
+       
         this.ticketsList = response;
         this.$toast.success(this.ticketsList.data.message);
-        console.log("success : ", response);
       }
     },
   },
@@ -198,8 +211,6 @@ export default {
 }
 
 .container {
-  /* background: #8baedf; */
-  /* background: #9ec6fd; */
   background: rgba(170, 250, 222, 0.954);
 
   border-radius: 1px;
@@ -263,6 +274,7 @@ export default {
   justify-content: space-between;
 }
 
+/* CSS for the Mobile View  */
 @media screen and (max-width: 768px) {
   .title span {
     font-size: 25px;

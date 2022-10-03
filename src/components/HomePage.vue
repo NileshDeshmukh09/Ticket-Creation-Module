@@ -1,6 +1,8 @@
 <template>
   <div id="HomeDiv">
     <NavBar />
+
+    <!-- Name of the Application -->
     <div
       class="
         home
@@ -23,9 +25,6 @@ export default {
   components: {
     NavBar,
   },
-  // methods : {
-  //   show: true
-  // }
 };
 </script>
 
@@ -42,6 +41,7 @@ export default {
   box-shadow: 3px 3px 15px black;
 }
 
+/* styling for the Mobile View  */
 @media screen and (max-width: 768px) {
   .home {
     background: rgb(7, 161, 153);
@@ -51,9 +51,10 @@ export default {
     transform: translate(-50%, -50%);
     border: 1px solid black;
     box-shadow: 3px 3px 15px black;
+    width: 80%;
   }
 
-  h1{
+  h1 {
     font-size: 40px;
   }
 }

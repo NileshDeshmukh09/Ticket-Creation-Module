@@ -3,6 +3,7 @@
     <div id="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
+        <!-- Get the username using Interpolation -->
         <router-link class="navbar-brand  nav-menu" to="/">Welcome <span class="text-primary">{{ getUserType }} {{ userName }} </span> !</router-link>
         <button
           class="navbar-toggler"
@@ -21,6 +22,8 @@
               <li class="nav-item nav-menu">
                 <router-link class="nav-link" to="/admin/users">Users</router-link>
               </li>
+
+              <!-- Logout router to clear the token  -->
               <li class="nav-item nav-menu">
                 <router-link class="nav-link" @click.prevent='logOut()' to="/login">Logout</router-link>
               </li>
@@ -47,7 +50,7 @@ export default {
   methods : {
 
      logOut() {  
-
+            // Funnction which clear the data from from the local storage 
             localStorage.clear();
             this.$router.replace('/login');
         },

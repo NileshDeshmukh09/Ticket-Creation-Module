@@ -20,6 +20,7 @@ export const signup = async (data) => {
 };
 
 
+// Login Request 
 export const userLogin = async (data ) => {
     const req = {
         method: 'post',
@@ -30,7 +31,6 @@ export const userLogin = async (data ) => {
 
     try { 
        const response = await axios(req);
-       console.log( response );
         return response;
 
     } catch (error) {
