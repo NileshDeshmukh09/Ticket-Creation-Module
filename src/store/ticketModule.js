@@ -39,9 +39,6 @@ const actions = {
     async login({ commit }, data) {
 
         try {
-
-
-
             const response = await userLogin(data);
             if (response.data.status == 200) {
                 const {
